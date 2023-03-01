@@ -1,0 +1,6 @@
+/**
+ * SintaxScann
+ */
+public class SintaxScann {
+
+}

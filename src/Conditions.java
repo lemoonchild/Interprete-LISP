@@ -1,0 +1,6 @@
+/**
+ * Conditions
+ */
+public class Conditions {
+
+}

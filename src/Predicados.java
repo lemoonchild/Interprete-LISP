@@ -1,0 +1,6 @@
+/**
+ * Predicados
+ */
+public class Predicados {
+
+}

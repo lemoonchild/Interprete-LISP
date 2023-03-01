@@ -1,0 +1,6 @@
+/**
+ * Variables
+ */
+public class Variables {
+
+}
