@@ -1,6 +1,8 @@
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * SintaxScann
@@ -61,4 +63,14 @@ public class SintaxScann {
 
         return sf;
     }
+	public boolean evalateOperation(String regex, String expression) {
+        
+        String newExpression = expression.replace("(", "");
+        newExpression = expression.replace(")", ""); 
+
+		Pattern pattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
+	    Matcher matcher = pattern.matcher(newExpression);
+        
+	    return matcher.find();
+	}
 }
