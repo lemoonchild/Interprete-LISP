@@ -45,35 +45,6 @@ public class SintaxScann {
         // FALTANTE OPERACIONES ARITMÉTICAS, PREDICADOS Y CONDICIONES
     }
 
-    /*
-     * Permite reconocer cuando empieza y termina el uso de una función especial,
-     * reconociendo sus paréntesis.
-     * 
-     * Además retorna el código de esa función a través de un arraylist, que luego
-     * será interpretado.
-     */
-    public ArrayList<String> special_function() {
-
-        int abre_parentesis = 0;
-        int cierra_parentesis = 0;
-        ArrayList<String> sf = new ArrayList<String>();
-
-        do {
-            String line = sc.nextLine();
-            sf.add(line);
-            String[] chars = line.split("");
-            if (chars.equals("(")) {
-                abre_parentesis += 1;
-            } else if (chars.equals(")")) {
-                cierra_parentesis += 1;
-            } else {
-                continue;
-            }
-        } while (abre_parentesis != cierra_parentesis);
-
-        return sf;
-    }
-
     public boolean evalateOperation(String regex, String expression) {
 
         String newExpression = expression.replace("(", "");
