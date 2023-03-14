@@ -1,9 +1,34 @@
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 /**
  * Predicados
  */
 public class Predicados<T> {
+
+    // public void Read(ArrayList<String> lines) {
+    // String[] Parts;
+    // int cont = 0;
+    // for (String string : lines) {
+    // if (lines.size() != 1) {
+    // if (cont == 0) {
+    // // Decide.action(string)
+    // } else {
+    // Parts = string.split(" ");
+    // }
+    // cont++;
+    // } else {
+    // // Decide.action(string)
+    // Parts = string.split(" ");
+    // if (Parts.length > 2) {
+    // String e1 = Parts[Parts.length - 2];
+    // String e2 = Parts[Parts.length - 1];
+    // } else {
+    // String elemento = Parts[Parts.length - 1];
+    // }
+    // }
+    // }
+    // }
 
     public boolean Atom(String elemento) {
         if (elemento.contains("(") & elemento.contains(")")) {
@@ -37,4 +62,11 @@ public class Predicados<T> {
         }
     }
 
+    public LinkedList<T> listCreation(ArrayList<T> Elements) {
+        LinkedList<T> temp = new LinkedList<>();
+        for (T object : Elements) {
+            temp.add((T) object);
+        }
+        return temp;
+    }
 }
