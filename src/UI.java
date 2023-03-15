@@ -1,3 +1,4 @@
+
 import java.util.Scanner;
 
 /**
@@ -6,11 +7,12 @@ import java.util.Scanner;
 public class UI {
 
     static Scanner sc = new Scanner(System.in); 
-    static Operations operations = new Operations(); 
+    static Operations arithOp = new Operations(); 
 
     public static void main(String[] args) {
-        
-        menuPrincipal(); 
+
+        menuPrincipal();
+
     }
 
     public static void menuPrincipal(){
@@ -24,7 +26,7 @@ public class UI {
 
             case 1: 
             System.out.println("¿Qué operación desea realizar?");
-            System.out.println("1. Operaciones Simples, ej. (+34)");
+            System.out.println("1. Operaciones ariméticas");
             int type = sc.nextInt(); 
 
             switch(type){
@@ -32,7 +34,7 @@ public class UI {
                 case 1: 
                 System.out.println("Por favor, ingrese su operacion aritmetica simple, ej. (-53)");
                 String operation = sc.next();
-                System.out.println("Resultaod de la operación" + operations.simpleOperations(operation));
+                System.out.println(arithOp.evaluate(operation));
                 
 
             }
