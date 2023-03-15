@@ -7,23 +7,26 @@ import java.util.Scanner;
 public class UI {
 
     static Scanner sc = new Scanner(System.in); 
-    static Operations arithOp = new Operations(); 
+    static Operations arithOp = new Operations();
 
     public static void main(String[] args) {
 
         menuPrincipal();
-
     }
 
-    public static void menuPrincipal(){
+    public static void menuPrincipal() {
         System.out.println("\n¡Bienvenido al interprete de LISP!");
-        System.out.println("¿Qué desea realizar?\n");
-        System.out.println("\t1. Realizar operaciones aritméticas");
-        
+        System.out.println("Porfavor ingresa el Path del archivo txt en el cual se encuentra tu código\n");
+
+        String path = sc.nextLine();
+        readFile._readfile(path);
+
+        System.out.println("¿Que le gustaría realizar hoy?");
+        System.out.println("1. Operaciones aritmeticas");
+
         int op = sc.nextInt(); 
-
+        
         switch(op){
-
             case 1: 
             System.out.println("¿Qué operación desea realizar?");
             System.out.println("1. Operaciones ariméticas");
