@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "temporary_main",
+            "request": "launch",
+            "mainClass": "temporary_main",
+            "projectName": "Proyecto-LISP_cb28d31b"
+        },
+        {
+            "type": "java",
             "name": "Current File",
             "request": "launch",
             "mainClass": "${file}"

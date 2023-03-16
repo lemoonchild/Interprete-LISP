@@ -11,43 +11,47 @@ import java.util.stream.Collectors;
 
 public class Conditions {
 
-    public String Read_COND(ArrayList<String> part) {
-        String Conditions = new String();
+    public ArrayList<List<String>> Read_COND(ArrayList<String> part) {
+        ArrayList<List<String>> Conditions = new ArrayList<List<String>>();
         for (String p : part) {
             if (p.equalsIgnoreCase("(cond")) {
                 continue;
             } else if (p.equals(")")) {
                 break;
             } else {
-                Conditions += p;
+                List<String> a = getExpressions(p);
+                Conditions.add(a);
             }
         }
 
         return Conditions;
     }
 
-    public String COND(ArrayList<String> Condition) {
-        String ToDo = Read_COND(Condition);
-        List<String> work = getExpressions(ToDo);
-
-        for (int i = 0; i < work.size() / 2; i += 2) {
-            int predicado = new SintaxScann().Decide_action(work.get(i));
-            new Predicados<>(predicado, ToDo);
+    public <T> String COND(ArrayList<String> Condition) {
+        ArrayList<List<String>> ToDo = Read_COND(Condition);
+        Predicados<T> true_false = new Predicados<>();
+        for (List<String> list : ToDo) {
+            for (int i = 0; i < list.size(); i++) {
+                if (list.get(i).equals("") || list.get(i).equals(" ")) {
+                    continue;
+                } else if (list.get(i).contains("t")) {
+                    String def = list.get(1).trim();
+                    true_false.start(0, "t", def);
+                    break;
+                } else {
+                    int predicado = new SintaxScann().Decide_action(list.get(i));
+                    true_false.start(predicado, list.get(i), list.get(i + 1).trim());
+                    break;
+                }
+            }
         }
 
         return "";
     }
 
-    public static List<String> getExpressions(String general) {
-
-        List<String> expressions = Arrays.asList(general.split("[()]"));
-        expressions = expressions.stream()
-                .filter(s -> s.matches("[a-zA-Z0-9]+.*"))
-                .map(String::trim)
-                .collect(Collectors.toList());
-
-        expressions.remove(0);
-
+    public static List<String> getExpressions(String lispCode) {
+        List<String> expressions = Arrays.asList(lispCode.split("[()]"));
+        expressions = expressions.stream().collect(Collectors.toList());
         return expressions;
     }
 

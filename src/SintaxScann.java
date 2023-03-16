@@ -56,11 +56,14 @@ public class SintaxScann {
             return 4; // Tomar datos literales
         } else if (Parts[0].equalsIgnoreCase("(atom") || Parts[1].equalsIgnoreCase("atom")) {
             return 5; // ¿será una lista? - PREDICADO
-        } else if (Parts[0].equalsIgnoreCase("(equal") || Parts[1].equalsIgnoreCase("equal")) {
+        } else if (Parts[0].equalsIgnoreCase("(equal") || Parts[1].equalsIgnoreCase("equal")
+                || Parts[0].contains("=")) {
             return 6; // ¿elementos iguales? - PREDICADO
-        } else if (Parts[0].equalsIgnoreCase("(<") || Parts[1].equalsIgnoreCase("<")) {
+        } else if (Parts[0].equalsIgnoreCase("(<") || Parts[0].equalsIgnoreCase("<")
+                || Parts[1].equalsIgnoreCase("<")) {
             return 7; // Menor que - PREDICADO
-        } else if (Parts[0].equalsIgnoreCase("(>") || Parts[1].equalsIgnoreCase(">")) {
+        } else if (Parts[0].equalsIgnoreCase("(>") || Parts[0].equalsIgnoreCase(">")
+                || Parts[1].equalsIgnoreCase("<")) {
             return 8; // Mayor que - PREDICADO
         } else if (Parts[0].equalsIgnoreCase("(list") || Parts[1].equalsIgnoreCase("list")) {
             return 9; // Crear una list

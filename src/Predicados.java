@@ -6,27 +6,43 @@ import java.util.LinkedList;
  * Predicados
  */
 public class Predicados<T> {
-    Predicados(int action, String toDo) {
+    int x = 5;
+
+    public Predicados() {
+    }
+
+    public void start(int action, String toDo, String ifTrue) {
         String[] elements = toDo.split(" ");
+        Boolean ans = false;
         switch (action) {
             case 5:
-                Atom(toDo);
+                ans = Atom(toDo);
                 break;
             case 6:
-                Equal(elements[1], elements[2]);
+                ans = Equal(elements[1], elements[2]);
                 break;
             case 7:
-                LessThan(Integer.valueOf(elements[1]), Integer.valueOf(elements[2]));
+                ans = LessThan(Integer.valueOf(elements[1]), Integer.valueOf(elements[2]));
                 break;
             case 8:
-                MoreThan(Integer.valueOf(elements[1]), Integer.valueOf(elements[2]));
+                ans = MoreThan(Integer.valueOf(elements[1]), Integer.valueOf(elements[2]));
                 break;
             case 9:
                 listCreation((ArrayList<String>) Arrays.asList(elements));
                 break;
-
+            case 0:
+                if (elements[0].equalsIgnoreCase("t") || elements[0].equalsIgnoreCase("(t")) {
+                    ans = true;
+                }
             default:
+                System.out.println("Condición inválida, revisa tu código");
                 break;
+        }
+
+        if (ifTrue != null) {
+            if (ans) {
+                System.out.println(ifTrue);
+            }
         }
     }
 
