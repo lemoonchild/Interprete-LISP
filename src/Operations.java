@@ -6,21 +6,59 @@ import java.util.Stack;
 
 public class Operations<T extends Number> {
 
-    private Map<String, T> variables;
     private Stack<Object> stack;
 
     public Operations() {
-        this.variables = new HashMap<>();
         this.stack = new Stack<>();
     }
 
     /**
-     * Metodo que realiza la logica en la que ingresan las operaciones 
+     * Metodo que realiza la logica en la que ingresan las operaciones unicamente con numeros
      * @param expression Expresion ingresada por usuario 
      * @return Resultado de la operacion 
      * @throws IllegalArgumentException Error cuando encuentre un token invalido 
      */
-    public T evaluate(String expression) throws IllegalArgumentException {
+    public T evaluateOnlyNumbers(String expression) throws IllegalArgumentException {
+
+        String[] tokens = expression.split("\\s+|(?=\\()|(?<=\\))"); // La expresión regular utiliza tres patrones para dividir la cadena de entrada en tokens separados por uno o más espacios en blanco, paréntesis izquierdos o paréntesis derechos
+        List<Object> pendingTokens = new ArrayList<>();
+
+        for (String token : tokens) {
+
+            if (isNumber(token)) {
+
+                stack.push(Double.parseDouble(token));
+                pendingTokens.add(Double.parseDouble(token));
+    
+            }  else if (isFunction(token)) {
+
+                pendingTokens.add(token);
+    
+            } else if (isOpeningParenthesis(token)) {
+
+                stack.push(token);
+    
+            } else if (isClosingParenthesis(token)) {
+
+                evaluatePendingTokens(pendingTokens);
+                evaluateSubexpression();
+    
+            } else {
+
+                throw new IllegalArgumentException("Token invalido: " + token);
+            }
+        }
+        System.out.println("El resultado de la operacion es el siguiente: ");
+        return (T) stack.pop(); // resultado de la operacion al terminar la expresion 
+    }
+
+    /**
+     * Metodo que realiza la logica en la que ingresan las operaciones con variables 
+     * @param expression Expresion ingresada por usuario 
+     * @return Resultado de la operacion 
+     * @throws IllegalArgumentException Error cuando encuentre un token invalido 
+     */
+    public T evaluateWithVar(String expression, HashMap<String, Double> variables) throws IllegalArgumentException {
 
         String[] tokens = expression.split("\\s+|(?=\\()|(?<=\\))"); // La expresión regular utiliza tres patrones para dividir la cadena de entrada en tokens separados por uno o más espacios en blanco, paréntesis izquierdos o paréntesis derechos
         List<Object> pendingTokens = new ArrayList<>();
@@ -37,15 +75,9 @@ public class Operations<T extends Number> {
                 stack.push(variables.get(token));
                 pendingTokens.add(variables.get(token));
     
-            } else if (isFunction(token)) {
+            }else if (isFunction(token)) {
 
                 pendingTokens.add(token);
-    
-            } else if (isAssignment(token)) {
-
-                String variableName = tokens[0].substring(1);
-                T value = (T) stack.pop();
-                variables.put(variableName, value);
     
             } else if (isOpeningParenthesis(token)) {
 
@@ -93,15 +125,6 @@ public class Operations<T extends Number> {
     }
 
     /**
-     * Evalua si es asignacion de variable la expresion ingresada 
-     * @param token Token 
-     * @return true si es asignacion, false si no es 
-     */
-    private boolean isAssignment(String token) {
-        return token.startsWith("!");
-    }
-
-    /**
      * Evalua si es parentesis abierto la expresion ingresada 
      * @param token Token 
      * @return true si es parentesis abierto, false si no es 
@@ -135,7 +158,31 @@ public class Operations<T extends Number> {
             tokens.add(result);
         }
     }
+    /**
+     * Operacion "SETQ" que asigna un valor dentro una variable con la utilizacion de HashMap
+     * @param exprAssignValue Expresion con foramto ( variable valor )
+     * @return Hashmap de tipo String, Double con variable asignada 
+     */
+    public HashMap<String, Double> setq(String exprAssignValue) {
 
+        if(!exprAssignValue.contains("( setq ( ")){
+            System.out.println("¡No se ha utilizado la opcion ( setq(var value)) para asignar la variable!");
+        }
+
+        String newexprVar = exprAssignValue.replace("( setq (", " ").replace("))", " ").trim();
+        HashMap<String, Double> variables = new HashMap<>();
+    
+        String[] tokens = newexprVar.split(" ");
+
+    
+        String variableName = tokens[0];
+        Double varValue = Double.parseDouble(tokens[1]);
+    
+        variables.put(variableName, varValue);
+
+        return variables;
+    }
+    
     /**
      * Evalua el operador 
      * @param a token Double de lista de tokens pendientes
