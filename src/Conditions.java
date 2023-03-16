@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Hashtable;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -29,13 +28,17 @@ public class Conditions {
 
     public String COND(ArrayList<String> Condition) {
         String ToDo = Read_COND(Condition);
-        Hashtable<String, String> work = getExpressions(ToDo);
+        List<String> work = getExpressions(ToDo);
+
+        for (int i = 0; i < work.size() / 2; i += 2) {
+            int predicado = new SintaxScann().Decide_action(work.get(i));
+            new Predicados<>(predicado, ToDo);
+        }
 
         return "";
     }
 
-    public static Hashtable<String, String> getExpressions(String general) {
-        Hashtable<String, String> cond_exp = new Hashtable<>();
+    public static List<String> getExpressions(String general) {
 
         List<String> expressions = Arrays.asList(general.split("[()]"));
         expressions = expressions.stream()
@@ -45,12 +48,7 @@ public class Conditions {
 
         expressions.remove(0);
 
-        int checked = 0;
-        for (String string : expressions) {
-            cond_exp.put(expressions.get(checked), expressions.get(checked + 1));
-            checked += 2;
-        }
-        return cond_exp;
+        return expressions;
     }
 
 }
