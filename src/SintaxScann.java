@@ -1,5 +1,5 @@
 
-
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -9,6 +9,30 @@ import java.util.regex.Pattern;
  */
 public class SintaxScann {
     Scanner sc = new Scanner(System.in);
+
+    /**
+     * Permite leer linea por linea cierto código y decidir la acción a tomar.
+     * 
+     * @param lines
+     */
+    public void Read(ArrayList<String> lines) {
+        String[] Parts;
+        int cont = 0;
+        for (String string : lines) {
+            if (lines.size() != 1) { // Si son varias líneas de código
+                if (cont == 0) {
+                    Decide_action(string);
+                } else {
+                    Parts = string.split(" ");
+                }
+                cont++;
+            } else { // Al contar solo una línea de código
+                Decide_action(string); // Escoger acción a realizar
+                Parts = string.split("\\s|(?<=\\()|(?=\\))"); // Dividir paréntesis
+
+            }
+        }
+    }
 
     /**
      * Según lo escrito por el usuario permiete reconocer lo siguiente a realizarse
@@ -23,26 +47,28 @@ public class SintaxScann {
 
         if (Parts[0].equalsIgnoreCase("(defun") || Parts[1].equalsIgnoreCase("defun")) {
             return 1; // Definir función
+        } else if (Parts[0].equalsIgnoreCase("(cond") || Parts[1].equalsIgnoreCase("cond")) {
+            return 2; // Condiciones
         } else if (Parts[0].equalsIgnoreCase("(setq") || Parts[1].equalsIgnoreCase("setq")) {
-            return 2; // asignar valor a una variable
+            return 3; // asignar valor a una variable
         } else if (Parts[0].equalsIgnoreCase("(quote") || Parts[1].equalsIgnoreCase("quote")
                 || Parts[0].indexOf("'") == 0) {
-            return 3; // Tomar datos literales
+            return 4; // Tomar datos literales
         } else if (Parts[0].equalsIgnoreCase("(atom") || Parts[1].equalsIgnoreCase("atom")) {
-            return 4; // ¿será una lista? - PREDICADO
+            return 5; // ¿será una lista? - PREDICADO
         } else if (Parts[0].equalsIgnoreCase("(equal") || Parts[1].equalsIgnoreCase("equal")) {
-            return 5; // ¿elementos iguales? - PREDICADO
+            return 6; // ¿elementos iguales? - PREDICADO
         } else if (Parts[0].equalsIgnoreCase("(<") || Parts[1].equalsIgnoreCase("<")) {
-            return 6; // Menor que - PREDICADO
+            return 7; // Menor que - PREDICADO
         } else if (Parts[0].equalsIgnoreCase("(>") || Parts[1].equalsIgnoreCase(">")) {
-            return 7; // Mayor que - PREDICADO
+            return 8; // Mayor que - PREDICADO
         } else if (Parts[0].equalsIgnoreCase("(list") || Parts[1].equalsIgnoreCase("list")) {
-            return 8; // Crear una list
+            return 9; // Crear una list
         } else {
             return 0; // Invalid action
         }
 
-        // FALTANTE OPERACIONES ARITMÉTICAS, PREDICADOS Y CONDICIONES
+        // FALTANTE OPERACIONES ARITMÉTICAS Y CONDICIONES
     }
 
     public boolean evalateOperation(String regex, String expression) {
