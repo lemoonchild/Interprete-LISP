@@ -1,3 +1,6 @@
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  * Variables
  */
@@ -12,4 +15,19 @@ public class Variables<T> {
         this._variable = (T) aa;
     }
 
+    public String evaluateQuoteExpr(String quoteExpr){
+
+        Pattern pattern = Pattern.compile("\\(quote\\(([^)]+)\\)\\)"); 
+        Matcher matcher = pattern.matcher(quoteExpr);
+        if (matcher.find()) {
+            String textInside = matcher.group(1); 
+            return "'(" + textInside.replaceFirst("^quote\\(", "").replaceFirst("\\)$", "") + ")'"; 
+        } else {
+            throw new IllegalArgumentException("¡Cuidado! La cadena no cumple con parametros de Quote");
+        }
+    }
+    
 }
+        
+
+
