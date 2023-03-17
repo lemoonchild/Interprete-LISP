@@ -63,13 +63,20 @@ public class SintaxScann {
             return 8; // Mayor que - PREDICADO
         } else if (Parts[0].contains("list")) {
             return 9; // Crear una list
-        } else {
-            return 0; // Invalid action
+        } else if (matchArithmeticOp(action)){
+            return 10; 
+        }else {
+            return 0; 
         }
 
-        // FALTANTE OPERACIONES ARITMÉTICAS Y CONDICIONES
     }
+    public boolean matchArithmeticOp(String expressions){
 
+        Pattern pattern = Pattern.compile("[/*+-]");
+        Matcher matcher = pattern.matcher(expressions);
+
+        return matcher.find();
+    }
     public boolean evalateOperation(String regex, String expression) {
 
         String newExpression = expression.replace("(", "");
