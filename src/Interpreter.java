@@ -13,6 +13,7 @@ public class Interpreter<T> {
     Operations operations = new Operations<>();
     Predicados predicados = new Predicados<>();
     static Variables variables = new Variables<>();
+    Functions funciones = new Functions();
     SintaxScann ss = new SintaxScann();
 
     public void Interp(ArrayList<ArrayList<String>> lisp_code) {
@@ -20,7 +21,7 @@ public class Interpreter<T> {
             int a = ss.Decide_action(function.get(0));
             switch (a) {
                 case 1:
-                    // defun
+                    funciones.DEFUN(function);
                     break;
                 case 2:
                     COND(function);
