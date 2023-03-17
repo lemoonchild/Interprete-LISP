@@ -6,6 +6,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "SetQ",
+            "request": "launch",
+            "mainClass": "SetQ",
+            "projectName": "Proyecto-LISP_cb28d31b"
+        },
+        {
+            "type": "java",
+            "name": "SetQ",
+            "request": "launch",
+            "mainClass": "SetQ",
+            "projectName": "Proyecto-LISP_feafbb56"
+        },
+        {
+            "type": "java",
             "name": "UI",
             "request": "launch",
             "mainClass": "UI",

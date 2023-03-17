@@ -12,16 +12,17 @@ public class Interpreter<T> {
     Conditions condition = new Conditions();
     Operations operations = new Operations<>();
     Predicados predicados = new Predicados<>();
+    static DEFUN def_funciones = new DEFUN();
     static Variables variables = new Variables<>();
     Functions funciones = new Functions();
     SintaxScann ss = new SintaxScann();
 
     public void Interp(ArrayList<ArrayList<String>> lisp_code) {
-        for (ArrayList<String> function : lisp_code) { 
+        for (ArrayList<String> function : lisp_code) {
             int a = ss.Decide_action(function.get(0));
             switch (a) {
                 case 1:
-                    funciones.DEFUN(function);
+                    def_funciones.create(function);
                     break;
                 case 2:
                     COND(function);
@@ -47,18 +48,21 @@ public class Interpreter<T> {
                 case 9:
                     predicados.start(9, null, null);
                     break;
-                case 10: 
-                    for(String tokens : function){
+                case 10:
+                    for (String tokens : function) {
 
-                        if(containsOnlyNumbers(tokens)){
-                            evaluateOnlyNumbers(function.get(0)); 
+                        if (containsOnlyNumbers(tokens)) {
+                            evaluateOnlyNumbers(function.get(0));
 
-                        }else{
+                        } else {
                             evaluateWithVar(function.get(0), variables.getVariables());
 
                         }
 
                     }
+                case 11:
+                    def_funciones.used_SavedFunction("", a, b);
+                    break;
                 case 0:
                     System.out.println("Existe un error en el código");
                     break;
@@ -94,10 +98,9 @@ public class Interpreter<T> {
     }
 
     public void QUOTE(String a) {
-        variables.Quote(a);
     }
-    
-    public boolean containsOnlyNumbers(String expressions){
+
+    public boolean containsOnlyNumbers(String expressions) {
 
         Pattern pattern = Pattern.compile("-?\\d+(\\.\\d+)?");
         Matcher matcher = pattern.matcher(expressions);

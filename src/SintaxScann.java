@@ -39,20 +39,24 @@ public class SintaxScann {
             return 8; // Mayor que - PREDICADO
         } else if (Parts[0].contains("list")) {
             return 9; // Crear una list
-        } else if (matchArithmeticOp(action)){
-            return 10; 
-        }else {
-            return 0; 
+        } else if (matchArithmeticOp(action)) {
+            return 10;
+        } else if (createdFunction(Parts[0])) {
+            return 11;
+        } else {
+            return 0;
         }
 
     }
-    public boolean matchArithmeticOp(String expressions){
+
+    public boolean matchArithmeticOp(String expressions) {
 
         Pattern pattern = Pattern.compile("\\s+|(?=\\()|(?<=\\))");
         Matcher matcher = pattern.matcher(expressions);
 
         return matcher.find();
     }
+
     public boolean evalateOperation(String regex, String expression) {
 
         String newExpression = expression.replace("(", "");
@@ -63,10 +67,13 @@ public class SintaxScann {
 
         return matcher.find();
     }
-} 
-         
-        
 
-     
+    public boolean createdFunction(String key) {
+        if (Interpreter.def_funciones.savedFunctions.containsKey(key)) {
+            return true;
+        } else {
+            return false;
+        }
 
-    
+    }
+}
