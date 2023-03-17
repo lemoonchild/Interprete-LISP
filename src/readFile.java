@@ -76,4 +76,15 @@ public class readFile {
 
     return sf;
   }
+
+  public static ArrayList<String> split(ArrayList<String> lista, String delimitador) {
+    ArrayList<String> subcadenas = new ArrayList<>();
+    for (String cadena : lista) {
+        String[] partes = cadena.split(delimitador);
+        for (String parte : partes) {
+            subcadenas.add(parte);
+        }
+    }
+    return subcadenas;
+}
 }
