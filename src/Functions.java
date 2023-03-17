@@ -10,7 +10,7 @@ public class Functions {
 
     public void DEFUN(ArrayList<String> code) {
         for (int i = 1; i < code.size(); i++) {
-
+            new Interpreter<>().act(i, code);
         }
 
         String[] a = code.get(0).split(" ");
