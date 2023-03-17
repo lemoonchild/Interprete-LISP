@@ -45,27 +45,23 @@ public class SintaxScann {
 
         String[] Parts = action.split(" ");
 
-        if (Parts[0].equalsIgnoreCase("(defun") || Parts[1].equalsIgnoreCase("defun")) {
+        if (Parts[0].contains("(defun")) {
             return 1; // Definir función
-        } else if (Parts[0].equalsIgnoreCase("(cond") || Parts[1].equalsIgnoreCase("cond")) {
+        } else if (Parts[0].contains("cond")) {
             return 2; // Condiciones
-        } else if (Parts[0].equalsIgnoreCase("(setq") || Parts[1].equalsIgnoreCase("setq")) {
+        } else if (Parts[0].contains("setq")) {
             return 3; // asignar valor a una variable
-        } else if (Parts[0].equalsIgnoreCase("(quote") || Parts[1].equalsIgnoreCase("quote")
-                || Parts[0].indexOf("'") == 0) {
+        } else if (Parts[0].contains("quote")) {
             return 4; // Tomar datos literales
-        } else if (Parts[0].equalsIgnoreCase("(atom") || Parts[1].equalsIgnoreCase("atom")) {
+        } else if (Parts[0].contains("atom")) {
             return 5; // ¿será una lista? - PREDICADO
-        } else if (Parts[0].equalsIgnoreCase("(equal") || Parts[1].equalsIgnoreCase("equal")
-                || Parts[0].contains("=")) {
+        } else if (Parts[0].contains("equal") || Parts[0].contains("=")) {
             return 6; // ¿elementos iguales? - PREDICADO
-        } else if (Parts[0].equalsIgnoreCase("(<") || Parts[0].equalsIgnoreCase("<")
-                || Parts[1].equalsIgnoreCase("<")) {
+        } else if (Parts[0].contains("<")) {
             return 7; // Menor que - PREDICADO
-        } else if (Parts[0].equalsIgnoreCase("(>") || Parts[0].equalsIgnoreCase(">")
-                || Parts[1].equalsIgnoreCase("<")) {
+        } else if (Parts[0].contains(">")) {
             return 8; // Mayor que - PREDICADO
-        } else if (Parts[0].equalsIgnoreCase("(list") || Parts[1].equalsIgnoreCase("list")) {
+        } else if (Parts[0].contains("list")) {
             return 9; // Crear una list
         } else {
             return 0; // Invalid action

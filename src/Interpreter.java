@@ -11,6 +11,47 @@ public class Interpreter<T> {
     Operations operations = new Operations<>();
     Predicados predicados = new Predicados<>();
     static Variables variables = new Variables<>();
+    SintaxScann ss = new SintaxScann();
+
+    public void Interp(ArrayList<ArrayList<String>> lisp_code) {
+        for (ArrayList<String> function : lisp_code) {
+            int a = ss.Decide_action(function.get(0));
+            switch (a) {
+                case 1:
+                    // defun
+                    break;
+                case 2:
+                    COND(function);
+                    break;
+                case 3:
+                    SetQ(null);
+                    break;
+                case 4:
+                    QUOTE(null);
+                    break;
+                case 5:
+                    predicados.start(5, null, null);
+                    break;
+                case 6:
+                    predicados.start(6, null, null);
+                    break;
+                case 7:
+                    predicados.start(7, null, null);
+                    break;
+                case 8:
+                    predicados.start(8, null, null);
+                    break;
+                case 9:
+                    predicados.start(9, null, null);
+                    break;
+                case 0:
+                    System.out.println("Existe un error en el código");
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
 
     public void Read_COND(ArrayList<String> aa) {
         condition.Read_COND(aa);
@@ -34,6 +75,10 @@ public class Interpreter<T> {
 
     public void SetQ(String c) {
         operations.setq(c);
+    }
+
+    public void QUOTE(String a) {
+        variables.Quote(a);
     }
 
 }
