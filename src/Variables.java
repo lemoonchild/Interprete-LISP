@@ -11,6 +11,9 @@ public class Variables<T> {
         this._variable = variable;
     }
 
+    public Variables() {
+    }
+    
     public <V> void SetQ (V aa){
         this._variable = (T) aa;
     }
