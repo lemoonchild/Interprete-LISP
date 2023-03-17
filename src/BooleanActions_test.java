@@ -4,6 +4,7 @@ import org.junit.jupiter.engine.execution.ConditionEvaluator;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.LinkedList;
 
 import org.junit.Assert;
 
@@ -34,5 +35,11 @@ public class BooleanActions_test {
             cond.COND(lispCode);
         }
 
+    }
+
+    @Test
+    public void list(){
+        LinkedList<String> l1 = new Predicados<>().listCreation(lispCode);
+        System.out.println(l1);
     }
 }

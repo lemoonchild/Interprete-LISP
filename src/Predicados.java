@@ -89,11 +89,14 @@ public class Predicados<T> {
 
     public void isVariable(int i, int j) {
         HashMap<String, T> temp = Interpreter.variables.getVariables();
-        if (temp.containsKey(elements[i])) {
-            elements[i] = temp.get(elements[i]).toString();
-        }
-        if (temp.containsKey(elements[j])) {
-            elements[j] = temp.get(elements[j]).toString();
-        }
+        
+                if (temp.containsKey(elements[i])) {
+                elements[i] = temp.get(elements[i]).toString();
+            }
+            if (temp.containsKey(elements[j])) {
+                elements[j] = temp.get(elements[j]).toString();
+            }
+        
+        
     }
 }

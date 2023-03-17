@@ -22,7 +22,7 @@ public class Interpreter<T> {
 
     public void Interp(ArrayList<ArrayList<String>> lisp_code) {
         for (ArrayList<String> function : lisp_code) {
-            dividirParam(function);
+            
             int a = ss.Decide_action(function.get(0));
             switch (a) {
                 case 1:
@@ -38,18 +38,23 @@ public class Interpreter<T> {
                     QUOTE(function.get(0));
                     break;
                 case 5:
-                    predicados.start(5, p1, p2);
+                System.out.println(predicados.Atom(function.get(0)));    
+                    
                     break;
                 case 6:
+                    dividirParam(function);
                     predicados.start(6, p1, p2);
                     break;
                 case 7:
+                    dividirParam(function);
                     predicados.start(7, p1, p2);
                     break;
                 case 8:
+                    dividirParam(function);
                     predicados.start(8, p1, p2);
                     break;
                 case 9:
+                    dividirParam(function);
                     predicados.start(9, p1, p2);
                     break;
                 case 10:
@@ -65,6 +70,7 @@ public class Interpreter<T> {
 
                     }
                 case 11:
+                    dividirParam(function);
                     def_funciones.used_SavedFunction("", p1, p2);
                     break;
                 case 0:
@@ -99,6 +105,7 @@ public class Interpreter<T> {
 
     public void SetQ(ArrayList<String> c) {
         variables.SetQ(c, " ", variables.getVariables());
+        System.out.println(variables.getVariables());
     }
 
     public void QUOTE(String a) {
