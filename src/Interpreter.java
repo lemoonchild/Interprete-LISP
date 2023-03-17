@@ -28,7 +28,7 @@ public class Interpreter<T> {
                     COND(function);
                     break;
                 case 3:
-                    SetQ(null);
+                    SetQ(function);
                     break;
                 case 4:
                     QUOTE(function.get(0));
@@ -93,8 +93,8 @@ public class Interpreter<T> {
         operations.evaluateWithVar(aa, variables);
     }
 
-    public void SetQ(String c) {
-        operations.setq(c);
+    public void SetQ(ArrayList<String> c) {
+        variables.SetQ(c, " ", variables.getVariables());
     }
 
     public void QUOTE(String a) {
