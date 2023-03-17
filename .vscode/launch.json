@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "mainProve",
+            "request": "launch",
+            "mainClass": "mainProve",
+            "projectName": "Proyecto-LISP_3e0a4"
+        },
+        {
+            "type": "java",
             "name": "SetQ",
             "request": "launch",
             "mainClass": "SetQ",
