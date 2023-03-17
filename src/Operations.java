@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Stack;
 
 public class Operations<T extends Number> {
@@ -48,7 +47,6 @@ public class Operations<T extends Number> {
                 throw new IllegalArgumentException("Token invalido: " + token);
             }
         }
-        System.out.println("El resultado de la operacion es el siguiente: ");
         return (T) stack.pop(); // resultado de la operacion al terminar la expresion 
     }
 
@@ -93,7 +91,6 @@ public class Operations<T extends Number> {
                 throw new IllegalArgumentException("Token invalido: " + token);
             }
         }
-        System.out.println("El resultado de la operacion es el siguiente: ");
         return (T) stack.pop(); // resultado de la operacion al terminar la expresion 
     }
 
@@ -166,7 +163,7 @@ public class Operations<T extends Number> {
     public HashMap<String, Double> setq(String exprAssignValue) {
 
         if(!exprAssignValue.contains("( setq ( ")){
-            System.out.println("¡No se ha utilizado la opcion ( setq(var value)) para asignar la variable!");
+            throw new IllegalArgumentException("¡No se ha utilizado la opcion ( setq(var value)) para asignar la variable!");
         }
 
         String newexprVar = exprAssignValue.replace("( setq (", " ").replace("))", " ").trim();

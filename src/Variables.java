@@ -15,7 +15,7 @@ public class Variables<T> {
         this._variable = (T) aa;
     }
 
-    public String evaluateQuoteExpr(String quoteExpr){
+    public String Quote(String quoteExpr){
 
         Pattern pattern = Pattern.compile("\\(quote\\(([^)]+)\\)\\)"); 
         Matcher matcher = pattern.matcher(quoteExpr);
