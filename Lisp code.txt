@@ -1,0 +1,2 @@
+(cond
+  ((> x 10) "x es mayor que 10"))

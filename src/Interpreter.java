@@ -30,7 +30,7 @@ public class Interpreter<T> {
                     SetQ(null);
                     break;
                 case 4:
-                    QUOTE(null);
+                    QUOTE(function.get(0));
                     break;
                 case 5:
                     predicados.start(5, null, null);

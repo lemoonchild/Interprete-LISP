@@ -21,7 +21,7 @@ public class SintaxScann {
 
         String[] Parts = action.split(" ");
 
-        if (Parts[0].contains("(defun")) {
+        if (Parts[0].contains("defun")) {
             return 1; // Definir función
         } else if (Parts[0].contains("cond")) {
             return 2; // Condiciones
@@ -48,7 +48,7 @@ public class SintaxScann {
     }
     public boolean matchArithmeticOp(String expressions){
 
-        Pattern pattern = Pattern.compile("[/*+-]");
+        Pattern pattern = Pattern.compile("\\s+|(?=\\()|(?<=\\))");
         Matcher matcher = pattern.matcher(expressions);
 
         return matcher.find();

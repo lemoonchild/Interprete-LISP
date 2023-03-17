@@ -1,4 +1,5 @@
-import java.util.*;
+
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -8,33 +9,17 @@ public class UI {
 
     static Scanner sc = new Scanner(System.in); 
     static Operations arithOp = new Operations();
-    static readFile read = new readFile();
-
+    static readFile readfile = new readFile();
+    static Interpreter LISP = new Interpreter();
 
     public static void main(String[] args) {
-        Leer_un_codigo();
-    }
-
-    public static void menuPrincipalLISP() {
-        System.out.println("\n¡Bienvenido al interprete de LISP!\n");
-        System.out.println("Porfavor ingresa el Path del archivo txt en el cual se encuentra tu código\n");
-
-        String path = sc.nextLine();
-        read._readfile(path);
         
-    }
-    public static void Leer_un_codigo(){
-        ArrayList<ArrayList<String>> Array_sucio = read._readfile("C:\\Users\\villa\\Desktop\\Clases_S3\\Proyecto-LISP\\src\\Prueba.txt"); 
-        //funcion limpair(); 
-        for (ArrayList<String> arrayList : Array_sucio) {
-            ArrayList<String> cada_uno = new ArrayList<>();
-            cada_uno = read.split(arrayList, " ");
-            for (String aa : cada_uno) {
-                System.out.println(aa);
-            }
-        }
-    }
+        ArrayList<ArrayList<String>> lisp_code = readfile._readfile("C:\\Users\\ncast\\OneDrive\\Documentos\\Universidad\\Semestres\\Tercer Semestre\\Algoritmos y Estructura de Datos\\Proyecto\\Proyecto-LISP\\Lisp code.txt"); 
 
-    
+        LISP.Interp(lisp_code);
+    }
 }
+
+
+
 
