@@ -11,30 +11,6 @@ public class SintaxScann {
     Scanner sc = new Scanner(System.in);
 
     /**
-     * Permite leer linea por linea cierto código y decidir la acción a tomar.
-     * 
-     * @param lines
-     */
-    public void Read(ArrayList<String> lines) {
-        String[] Parts;
-        int cont = 0;
-        for (String string : lines) {
-            if (lines.size() != 1) { // Si son varias líneas de código
-                if (cont == 0) {
-                    Decide_action(string);
-                } else {
-                    Parts = string.split(" ");
-                }
-                cont++;
-            } else { // Al contar solo una línea de código
-                Decide_action(string); // Escoger acción a realizar
-                Parts = string.split("\\s|(?<=\\()|(?=\\))"); // Dividir paréntesis
-
-            }
-        }
-    }
-
-    /**
      * Según lo escrito por el usuario permiete reconocer lo siguiente a realizarse
      * 
      * @return Entero que representa la acción que se realizará
@@ -87,4 +63,10 @@ public class SintaxScann {
 
         return matcher.find();
     }
-}
+} 
+         
+        
+
+     
+
+    
