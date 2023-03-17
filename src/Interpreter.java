@@ -61,7 +61,7 @@ public class Interpreter<T> {
 
                     }
                 case 11:
-                    def_funciones.used_SavedFunction("", a, b);
+                    def_funciones.used_SavedFunction("", null, null);
                     break;
                 case 0:
                     System.out.println("Existe un error en el código");

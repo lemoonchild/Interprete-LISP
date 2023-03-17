@@ -15,6 +15,8 @@ import java.util.Scanner; // Import the Scanner class to read text files
  */
 
 public class readFile {
+  ArrayList<ArrayList<String>> total = new ArrayList<>();
+  ArrayList<String> Parcial = new ArrayList<>();
 
   /**
    * Metodo que lee el documento con el código de LISP y guarda los datos
@@ -23,9 +25,7 @@ public class readFile {
    * @param fpath Mensaje de lugar donde se encuentra el archivo datos.txt
    * @return data String
    */
-  public static ArrayList<ArrayList<String>> _readfile(String fpath) {
-
-    ArrayList<ArrayList<String>> total = new ArrayList<>();
+  public ArrayList<ArrayList<String>> _readfile(String fpath) {
 
     try {
 
@@ -33,12 +33,11 @@ public class readFile {
       Scanner myReader = new Scanner(myObj);
 
       while (myReader.hasNextLine()) {
-
-        ArrayList<String> data = special_function(myReader);
-        total.add(data);
-
+        String data = myReader.nextLine();
+        Parcial.add(data);
       }
       myReader.close();
+      special_function(Parcial);
 
     } catch (FileNotFoundException e) {
       System.out.println("An error occurred.");
@@ -54,36 +53,37 @@ public class readFile {
    * Además retorna el código de esa función a través de un arraylist, que luego
    * será interpretado.
    */
-  public static ArrayList<String> special_function(Scanner scan) {
-
-    Scanner sc = scan;
-    int abre_parentesis = 0;
-    int cierra_parentesis = 0;
+  public void special_function(ArrayList<String> code) {
     ArrayList<String> sf = new ArrayList<String>();
 
-    do {
-      String line = sc.nextLine();
-      sf.add(line);
-      String[] chars = line.split("");
-      if (chars.equals("(")) {
-        abre_parentesis += 1;
-      } else if (chars.equals(")")) {
-        cierra_parentesis += 1;
+    for (String string : code) {
+      if (string.isBlank()) {
+        if (sf != null) {
+          ArrayList<String> temporary = new ArrayList<>();
+          temporary.addAll(sf);
+          this.total.add(temporary);
+          sf.clear();
+        }
       } else {
-        continue;
+        sf.add(string);
       }
-    } while (abre_parentesis != cierra_parentesis);
+    }
+    if (sf != null) {
+      ArrayList<String> temporary = new ArrayList<>();
+      temporary.addAll(sf);
+      this.total.add(temporary);
+      sf.clear();
+    }
 
-    return sf;
   }
 
   public static ArrayList<String> split(ArrayList<String> lista, String delimitador) {
     ArrayList<String> subcadenas = new ArrayList<>();
     for (String cadena : lista) {
-        String[] partes = cadena.split(delimitador);
-        for (String parte : partes) {
-            subcadenas.add(parte);
-        }
+      String[] partes = cadena.split(delimitador);
+      for (String parte : partes) {
+        subcadenas.add(parte);
+      }
     }
     return subcadenas;
   }

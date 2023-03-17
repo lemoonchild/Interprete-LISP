@@ -24,4 +24,15 @@ public class BooleanActions_test {
     public void Conditions_testing() {
         cond.COND(lispCode);
     }
+
+    @Test
+    public void name() {
+        readFile read = new readFile();
+        Interpreter.variables.getVariables().put("x", 5);
+        for (ArrayList<String> lispCode : read
+                ._readfile("C:\\Users\\Fabi\\Documents\\GitHub\\Proyecto-LISP\\src\\Prueba.txt")) {
+            cond.COND(lispCode);
+        }
+
+    }
 }
