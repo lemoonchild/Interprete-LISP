@@ -27,11 +27,13 @@ public class Conditions {
         return Conditions;
     }
 
-    public <T> String COND(ArrayList<String> Condition) {
+    public <T> void COND(ArrayList<String> Condition) {
         ArrayList<List<String>> ToDo = Read_COND(Condition);
         Predicados<T> true_false = new Predicados<>();
+        Boolean fin = false;
+
         for (List<String> list : ToDo) {
-            for (int i = 0; i < list.size(); i++) {
+            for (int i = 0; i < list.size(); i += 2) {
                 if (list.get(i).equals("") || list.get(i).equals(" ")) {
                     continue;
                 } else if (list.get(i).contains("t")) {
@@ -40,13 +42,18 @@ public class Conditions {
                     break;
                 } else {
                     int predicado = new SintaxScann().Decide_action(list.get(i));
-                    true_false.start(predicado, list.get(i), list.get(i + 1).trim());
+                    fin = true_false.start(predicado, list.get(i), list.get(i + 1).trim());
+                }
+
+                if (fin) {
                     break;
                 }
             }
+            if (fin) {
+                break;
+            }
         }
 
-        return "";
     }
 
     public static List<String> getExpressions(String lispCode) {

@@ -1,19 +1,19 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.LinkedList;
 
 /**
  * Predicados
  */
 public class Predicados<T> {
-    int x = 5;
+    String[] elements;
 
-    public Predicados() {
-    }
-
-    public void start(int action, String toDo, String ifTrue) {
-        String[] elements = toDo.split(" ");
+    public boolean start(int action, String toDo, String ifTrue) {
+        elements = toDo.split(" ");
         Boolean ans = false;
+        isVariable(1, 2);
+
         switch (action) {
             case 5:
                 ans = Atom(toDo);
@@ -22,10 +22,10 @@ public class Predicados<T> {
                 ans = Equal(elements[1], elements[2]);
                 break;
             case 7:
-                ans = LessThan(Integer.valueOf(elements[1]), Integer.valueOf(elements[2]));
+                ans = LessThan(Double.valueOf(elements[1]), Double.valueOf(elements[2]));
                 break;
             case 8:
-                ans = MoreThan(Integer.valueOf(elements[1]), Integer.valueOf(elements[2]));
+                ans = MoreThan(Double.valueOf(elements[1]), Double.valueOf(elements[2]));
                 break;
             case 9:
                 listCreation((ArrayList<String>) Arrays.asList(elements));
@@ -44,6 +44,7 @@ public class Predicados<T> {
                 System.out.println(ifTrue);
             }
         }
+        return ans;
     }
 
     public boolean Atom(String elemento) {
@@ -62,7 +63,7 @@ public class Predicados<T> {
         }
     }
 
-    public boolean LessThan(int e1, int e2) {
+    public boolean LessThan(Double e1, Double e2) {
         if (e1 < e2) {
             return true;
         } else {
@@ -70,7 +71,7 @@ public class Predicados<T> {
         }
     }
 
-    public boolean MoreThan(int e1, int e2) {
+    public boolean MoreThan(Double e1, Double e2) {
         if (e1 > e2) {
             return true;
         } else {
@@ -84,5 +85,15 @@ public class Predicados<T> {
             temp.add(object);
         }
         return temp;
+    }
+
+    public void isVariable(int i, int j) {
+        HashMap<String, T> temp = Interpreter.variables.getVariables();
+        if (temp.containsKey(elements[i])) {
+            elements[i] = temp.get(elements[i]).toString();
+        }
+        if (temp.containsKey(elements[j])) {
+            elements[j] = temp.get(elements[j]).toString();
+        }
     }
 }
