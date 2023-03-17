@@ -6,8 +6,7 @@ public class SetQ {
     static Variables variables = new Variables<>();
     static ArrayList<String> araaaa = new ArrayList<String>();
 
-    public static <T> void setQ_parame(ArrayList<String> exprAssignValue, String delimiter,
-            HashMap<String, T> variables) {
+    public static <T> void setQ_parame(ArrayList<String> exprAssignValue, String delimiter,HashMap<String, T> variables) {
         araaaa.add("(setq x 10)");
         ArrayList<String> tokens = read.split(exprAssignValue, delimiter);
         String newexprVar = tokens.get(2).replace("(", "").replace(")", "").trim();
