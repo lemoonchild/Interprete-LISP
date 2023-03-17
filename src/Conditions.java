@@ -37,11 +37,11 @@ public class Conditions {
 
         for (List<String> list : ToDo) {
             for (int i = 0; i < list.size(); i += 2) {
-                if (list.get(i).equals("") || list.get(i).equals(" ")) {
+                if (list.get(i).isBlank()) {
                     continue;
                 } else if (list.get(i).contains("t")) {
-                    String def = list.get(2).trim();
-                    true_false.start(0, "t", def);
+                    //String def = list.get(3);
+                    true_false.start(0, "t", "default cond");
                     break;
                 } else {
                     int predicado = new SintaxScann().Decide_action(list.get(i));
