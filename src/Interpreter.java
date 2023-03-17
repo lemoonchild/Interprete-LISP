@@ -17,8 +17,12 @@ public class Interpreter<T> {
     Functions funciones = new Functions();
     SintaxScann ss = new SintaxScann();
 
+    String p1 = "";
+    String p2 = "";
+
     public void Interp(ArrayList<ArrayList<String>> lisp_code) {
         for (ArrayList<String> function : lisp_code) {
+            dividirParam(function);
             int a = ss.Decide_action(function.get(0));
             switch (a) {
                 case 1:
@@ -34,19 +38,19 @@ public class Interpreter<T> {
                     QUOTE(function.get(0));
                     break;
                 case 5:
-                    predicados.start(5, null, null);
+                    predicados.start(5, p1, p2);
                     break;
                 case 6:
-                    predicados.start(6, null, null);
+                    predicados.start(6, p1, p2);
                     break;
                 case 7:
-                    predicados.start(7, null, null);
+                    predicados.start(7, p1, p2);
                     break;
                 case 8:
-                    predicados.start(8, null, null);
+                    predicados.start(8, p1, p2);
                     break;
                 case 9:
-                    predicados.start(9, null, null);
+                    predicados.start(9, p1, p2);
                     break;
                 case 10:
                     for (String tokens : function) {
@@ -61,7 +65,7 @@ public class Interpreter<T> {
 
                     }
                 case 11:
-                    def_funciones.used_SavedFunction("", null, null);
+                    def_funciones.used_SavedFunction("", p1, p2);
                     break;
                 case 0:
                     System.out.println("Existe un error en el código");
@@ -106,6 +110,14 @@ public class Interpreter<T> {
         Matcher matcher = pattern.matcher(expressions);
 
         return matcher.find();
+    }
+
+    public void dividirParam(ArrayList<String> exprAssignValue) {
+        ArrayList<String> tokens = readFile.split(exprAssignValue, " ");
+        String newexprVar = tokens.get(2).replace("(", "").replace(")", "").trim();
+
+        p1 = tokens.get(1);
+        p2 = newexprVar;
     }
 
 }

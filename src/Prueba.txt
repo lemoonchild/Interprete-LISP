@@ -3,3 +3,7 @@
   ((= x 5) "x es igual a 5")
   ((< x 0) "x es menor que 0")
   (t "x es mayor o igual a 0, pero menor o igual que 10"))
+
+  (setq x 10)
+  
+  (setq x "Pato")
