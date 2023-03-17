@@ -18,6 +18,9 @@ public class Conditions {
                 continue;
             } else if (p.equals(")")) {
                 break;
+            } else if (p.contains("(t")) {
+                List<String> defAction = Arrays.asList(p.split(" "));
+                Conditions.add(defAction);
             } else {
                 List<String> a = getExpressions(p);
                 Conditions.add(a);
@@ -37,7 +40,7 @@ public class Conditions {
                 if (list.get(i).equals("") || list.get(i).equals(" ")) {
                     continue;
                 } else if (list.get(i).contains("t")) {
-                    String def = list.get(1).trim();
+                    String def = list.get(2).trim();
                     true_false.start(0, "t", def);
                     break;
                 } else {

@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class temporary_main<T> {
     public static Variables v = new Variables();

@@ -12,6 +12,8 @@ public class DEFUN {
         String[] a = code.get(0).split(" ");
 
         tempF.setName(a[0]);
+        partial_function(code);
+        tempF.setCode(acciones);
 
     }
 
