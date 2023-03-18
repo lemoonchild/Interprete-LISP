@@ -20,6 +20,8 @@ public class Interpreter<T> {
     String p1 = "";
     String p2 = "";
 
+    Boolean ans = false;
+
     public void Interp(ArrayList<ArrayList<String>> lisp_code) {
         for (ArrayList<String> function : lisp_code) {
 
@@ -38,22 +40,27 @@ public class Interpreter<T> {
                     QUOTE(function.get(0));
                     break;
                 case 5: // ATOM ¿Es una lista?
-                    predicados.Atom(function.get(0));
+                    ans = predicados.Atom(function.get(0));
+                    System.out.println(ans);
                     break;
                 case 6: // Equal
                     dividirParam(function);
-                    predicados.Equal(p2, p1);
+                    ans = predicados.Equal(p2, p1);
+                    System.out.println(ans);
                     break;
                 case 7: // <
                     dividirParam(function);
-                    predicados.LessThan(Double.valueOf(p1), Double.valueOf(p2));
+                    ans = predicados.LessThan(Double.valueOf(p1), Double.valueOf(p2));
+                    System.out.println(ans);
                     break;
                 case 8: // >
                     dividirParam(function);
-                    predicados.MoreThan(Double.valueOf(p1), Double.valueOf(p2));
+                    ans = predicados.MoreThan(Double.valueOf(p1), Double.valueOf(p2));
+                    System.out.println(ans);
                     break;
                 case 9: // List - crear listas
-                    predicados.listCreation(function.get(0));
+                    String list1 = predicados.listCreation(function.get(0));
+                    System.out.println(list1);
                     break;
                 case 10:
                     for (String tokens : function) {

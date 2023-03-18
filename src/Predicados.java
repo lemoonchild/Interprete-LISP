@@ -51,7 +51,8 @@ public class Predicados<T> {
     }
 
     public boolean Atom(String elemento) {
-        if (elemento.contains("(") & elemento.contains(")")) {
+        elemento = elemento.replace("\\(atom", "");
+        if (elemento.contains("(") & elemento.contains("))")) {
             return false;
         } else {
             return true;
