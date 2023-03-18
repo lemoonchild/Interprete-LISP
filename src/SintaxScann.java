@@ -25,7 +25,7 @@ public class SintaxScann {
             return 2; // Condiciones
         } else if (Parts[0].contains("setq")) {
             return 3; // asignar valor a una variable
-        } else if (Parts[0].contains("quote")) {
+        } else if (Parts[0].contains("quote") || Parts[0].contains("'")) {
             return 4; // Tomar datos literales
         } else if (Parts[0].contains("atom")) {
             return 5; // ¿será una lista? - PREDICADO
@@ -38,34 +38,33 @@ public class SintaxScann {
         } else if (Parts[0].contains("list")) {
             return 9; // Crear una list
         } else if (matchArithmeticOp(action)) {
-            return 10;
+            return 10; // Operaciones aritmeticas 
         } else if (createdFunction(Parts[0])) {
-            return 11;
+            return 11; // defun 
         } else {
-            return 0;
+            return 0; // no pertentece 
         }
 
     }
 
+    /**
+     * Metodo que realiza un regex para identificar operaciones aritmeticas 
+     * @param expressions Expresion a evaluar 
+     * @return Verdadero si matchea con regex, falso si no 
+     */
     public boolean matchArithmeticOp(String expressions) {
 
-        Pattern pattern = Pattern.compile("\\s+|(?=\\()|(?<=\\))");
+        Pattern pattern = Pattern.compile("\\s+|(?=\\()|(?<=\\))"); //revisar 
         Matcher matcher = pattern.matcher(expressions);
 
         return matcher.find();
     }
 
-    public boolean evalateOperation(String regex, String expression) {
-
-        String newExpression = expression.replace("(", "");
-        newExpression = expression.replace(")", "");
-
-        Pattern pattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
-        Matcher matcher = pattern.matcher(newExpression);
-
-        return matcher.find();
-    }
-
+    /**
+     * Metodo que identifica el defun 
+     * @param key palabra clave a identificar 
+     * @return verdadero si esta contiene la palabra, falso si no 
+     */
     public boolean createdFunction(String key) {
         if (Interpreter.def_funciones.savedFunctions.containsKey(key)) {
             return true;

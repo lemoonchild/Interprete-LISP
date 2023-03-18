@@ -22,6 +22,10 @@ public class Interpreter<T> {
 
     Boolean ans = false;
 
+    /**
+     * Metodo que realiza las demas funciones dependiendo del metodo "decide action"
+     * @param lisp_code Arraylist de Arraylist de codigo obtenido de txt 
+     */
     public void Interp(ArrayList<ArrayList<String>> lisp_code) {
         for (ArrayList<String> function : lisp_code) {
 
@@ -62,7 +66,7 @@ public class Interpreter<T> {
                     String list1 = predicados.listCreation(function.get(0));
                     System.out.println(list1);
                     break;
-                case 10:
+                case 10: // Operaciones aritmeticas 
                     for (String tokens : function) {
 
                         if (containsOnlyNumbers(tokens)) {
@@ -74,11 +78,11 @@ public class Interpreter<T> {
                         }
 
                     }
-                case 11:
+                case 11: // defun 
                     dividirParam(function);
                     def_funciones.used_SavedFunction("", p1, p2);
                     break;
-                case 0:
+                case 0: // no pertenece a funciones 
                     System.out.println("Existe un error en el código");
                     break;
 

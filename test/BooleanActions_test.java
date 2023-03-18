@@ -1,16 +1,12 @@
 
 import org.junit.Test;
-import org.junit.jupiter.engine.execution.ConditionEvaluator;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.LinkedList;
 
-import org.junit.Assert;
 
 public class BooleanActions_test {
     ArrayList<String> lispCode;
