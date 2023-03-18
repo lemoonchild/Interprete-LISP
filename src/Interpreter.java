@@ -40,22 +40,22 @@ public class Interpreter<T> {
                     QUOTE(function.get(0));
                     break;
                 case 5: // ATOM ¿Es una lista?
-                    ans = predicados.Atom(function.get(0));
+                    ans = predicados.start(5, function.get(0), null);
                     System.out.println(ans);
                     break;
                 case 6: // Equal
                     dividirParam(function);
-                    ans = predicados.Equal(p2, p1);
+                    ans = predicados.start(6, p1, p2);
                     System.out.println(ans);
                     break;
                 case 7: // <
                     dividirParam(function);
-                    ans = predicados.LessThan(Double.valueOf(p1), Double.valueOf(p2));
+                    ans = predicados.start(7, p1, p2);
                     System.out.println(ans);
                     break;
                 case 8: // >
                     dividirParam(function);
-                    ans = predicados.MoreThan(Double.valueOf(p1), Double.valueOf(p2));
+                    ans = predicados.start(8, p1, p2);
                     System.out.println(ans);
                     break;
                 case 9: // List - crear listas
