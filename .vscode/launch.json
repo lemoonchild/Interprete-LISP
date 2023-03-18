@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "UI",
+            "request": "launch",
+            "mainClass": "UI",
+            "projectName": "Proyecto-LISP_cb28d31b"
+        },
+        {
+            "type": "java",
             "name": "mainProve",
             "request": "launch",
             "mainClass": "mainProve",

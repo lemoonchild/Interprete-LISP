@@ -19,7 +19,7 @@ public class Conditions {
             } else if (p.equals(")")) {
                 break;
             } else if (p.contains("(t")) {
-                List<String> defAction = Arrays.asList(p.split(" "));
+                List<String> defAction = Arrays.asList(p.trim());
                 Conditions.add(defAction);
             } else {
                 List<String> a = getExpressions(p);
@@ -36,16 +36,19 @@ public class Conditions {
         Boolean fin = false;
 
         for (List<String> list : ToDo) {
-            for (int i = 0; i < list.size(); i += 2) {
+            for (int i = 0; i < list.size();) {
                 if (list.get(i).isBlank()) {
+                    i++;
                     continue;
                 } else if (list.get(i).contains("t")) {
-                    //String def = list.get(3);
-                    true_false.start(0, "t", "default cond");
-                    break;
+                    String show = list.get(i).replaceAll("\\(t ", "").trim();
+                    show = show.replaceAll("\\)", "");
+                    fin = true_false.start(0, "t", show);
+                    i++;
                 } else {
                     int predicado = new SintaxScann().Decide_action(list.get(i));
                     fin = true_false.start(predicado, list.get(i), list.get(i + 1).trim());
+                    i += 2;
                 }
 
                 if (fin) {

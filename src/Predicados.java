@@ -12,28 +12,31 @@ public class Predicados<T> {
     public boolean start(int action, String toDo, String ifTrue) {
         elements = toDo.split(" ");
         Boolean ans = false;
-        isVariable(1, 2);
 
         switch (action) {
             case 5:
                 ans = Atom(toDo);
                 break;
             case 6:
+                isVariable(1, 2);
                 ans = Equal(elements[1], elements[2]);
                 break;
             case 7:
+                isVariable(1, 2);
                 ans = LessThan(Double.valueOf(elements[1]), Double.valueOf(elements[2]));
                 break;
             case 8:
+                isVariable(1, 2);
                 ans = MoreThan(Double.valueOf(elements[1]), Double.valueOf(elements[2]));
                 break;
             case 9:
                 listCreation((ArrayList<String>) Arrays.asList(elements));
                 break;
             case 0:
-                if (elements[0].equalsIgnoreCase("t") || elements[0].equalsIgnoreCase("(t")) {
+                if (toDo.contains("t")) {
                     ans = true;
                 }
+                break;
             default:
                 System.out.println("Condición inválida, revisa tu código");
                 break;
@@ -49,9 +52,9 @@ public class Predicados<T> {
 
     public boolean Atom(String elemento) {
         if (elemento.contains("(") & elemento.contains(")")) {
-            return true;
-        } else {
             return false;
+        } else {
+            return true;
         }
     }
 
@@ -89,14 +92,13 @@ public class Predicados<T> {
 
     public void isVariable(int i, int j) {
         HashMap<String, T> temp = Interpreter.variables.getVariables();
-        
-                if (temp.containsKey(elements[i])) {
-                elements[i] = temp.get(elements[i]).toString();
-            }
-            if (temp.containsKey(elements[j])) {
-                elements[j] = temp.get(elements[j]).toString();
-            }
-        
-        
+
+        if (temp.containsKey(elements[i])) {
+            elements[i] = temp.get(elements[i]).toString();
+        }
+        if (temp.containsKey(elements[j])) {
+            elements[j] = temp.get(elements[j]).toString();
+        }
+
     }
 }

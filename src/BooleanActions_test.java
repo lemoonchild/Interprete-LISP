@@ -2,6 +2,9 @@
 import org.junit.Test;
 import org.junit.jupiter.engine.execution.ConditionEvaluator;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
@@ -11,6 +14,7 @@ import org.junit.Assert;
 public class BooleanActions_test {
     ArrayList<String> lispCode;
     Conditions cond = new Conditions();
+    Predicados pred = new Predicados<>();
 
     public BooleanActions_test() {
         lispCode = new ArrayList<>();
@@ -38,8 +42,14 @@ public class BooleanActions_test {
     }
 
     @Test
-    public void list(){
-        LinkedList<String> l1 = new Predicados<>().listCreation(lispCode);
+    public void list() {
+        LinkedList<String> l1 = pred.listCreation(lispCode);
         System.out.println(l1);
+    }
+
+    @Test
+    public void Atom_test() {
+        assertTrue(pred.Atom("6"));
+        assertFalse(pred.Atom("(2, 3, 5)"));
     }
 }
