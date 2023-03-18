@@ -30,7 +30,7 @@ public class Predicados<T> {
                 ans = MoreThan(Double.valueOf(elements[1]), Double.valueOf(elements[2]));
                 break;
             case 9:
-                listCreation((ArrayList<String>) Arrays.asList(elements));
+                listCreation(toDo);
                 break;
             case 0:
                 if (toDo.contains("t")) {
@@ -82,12 +82,18 @@ public class Predicados<T> {
         }
     }
 
-    public LinkedList<String> listCreation(ArrayList<String> Elements) {
-        LinkedList<String> temp = new LinkedList<>();
-        for (String object : Elements) {
-            temp.add(object);
+    public String listCreation(String Elements) {
+        String Createdlist = "(";
+        String[] temp = Elements.split(" ");
+        for (String string : temp) {
+            if (string.contains("list")) {
+                continue;
+            } else {
+                Createdlist += string + " ";
+            }
         }
-        return temp;
+
+        return Createdlist.trim();
     }
 
     public void isVariable(int i, int j) {

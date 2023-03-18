@@ -2,6 +2,7 @@
 import org.junit.Test;
 import org.junit.jupiter.engine.execution.ConditionEvaluator;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -43,8 +44,8 @@ public class BooleanActions_test {
 
     @Test
     public void list() {
-        LinkedList<String> l1 = pred.listCreation(lispCode);
-        System.out.println(l1);
+        String l1 = pred.listCreation("(list 1 2 3 4 5 6 7 8 9 10)");
+        assertEquals("(1 2 3 4 5 6 7 8 9 10)", l1);
     }
 
     @Test

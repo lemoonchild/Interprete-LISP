@@ -22,40 +22,38 @@ public class Interpreter<T> {
 
     public void Interp(ArrayList<ArrayList<String>> lisp_code) {
         for (ArrayList<String> function : lisp_code) {
-            
+
             int a = ss.Decide_action(function.get(0));
             switch (a) {
-                case 1:
+                case 1: // Defun
                     def_funciones.create(function);
                     break;
-                case 2:
+                case 2: // Condiciones
                     COND(function);
                     break;
-                case 3:
+                case 3: // SetQ
                     SetQ(function);
                     break;
-                case 4:
+                case 4: // Quote
                     QUOTE(function.get(0));
                     break;
-                case 5:
-                System.out.println(predicados.Atom(function.get(0)));    
-                    
+                case 5: // ATOM ¿Es una lista?
+                    predicados.Atom(function.get(0));
                     break;
-                case 6:
+                case 6: // Equal
                     dividirParam(function);
-                    predicados.start(6, p1, p2);
+                    predicados.Equal(p2, p1);
                     break;
-                case 7:
+                case 7: // <
                     dividirParam(function);
-                    predicados.start(7, p1, p2);
+                    predicados.LessThan(Double.valueOf(p1), Double.valueOf(p2));
                     break;
-                case 8:
+                case 8: // >
                     dividirParam(function);
-                    predicados.start(8, p1, p2);
+                    predicados.MoreThan(Double.valueOf(p1), Double.valueOf(p2));
                     break;
-                case 9:
-                    dividirParam(function);
-                    predicados.start(9, p1, p2);
+                case 9: // List - crear listas
+                    predicados.listCreation(function.get(0));
                     break;
                 case 10:
                     for (String tokens : function) {
