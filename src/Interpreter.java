@@ -4,8 +4,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Clase Interpreter 
- * Objetivo: 
+ * Clase Interpreter
+ * Objetivo:
  */
 
 public class Interpreter<T> {
@@ -19,12 +19,14 @@ public class Interpreter<T> {
 
     String p1 = "";
     String p2 = "";
+    String toUsefunction = "";
 
     Boolean ans = false;
 
     /**
      * Metodo que realiza las demas funciones dependiendo del metodo "decide action"
-     * @param lisp_code Arraylist de Arraylist de codigo obtenido de txt 
+     * 
+     * @param lisp_code Arraylist de Arraylist de codigo obtenido de txt
      */
     public void Interp(ArrayList<ArrayList<String>> lisp_code) {
         for (ArrayList<String> function : lisp_code) {
@@ -48,25 +50,22 @@ public class Interpreter<T> {
                     System.out.println(ans);
                     break;
                 case 6: // Equal
-                    dividirParam(function);
-                    ans = predicados.start(6, p1, p2);
+                    ans = predicados.start(6, function.get(0), null);
                     System.out.println(ans);
                     break;
                 case 7: // <
-                    dividirParam(function);
-                    ans = predicados.start(7, p1, p2);
+                    ans = predicados.start(7, function.get(0), null);
                     System.out.println(ans);
                     break;
                 case 8: // >
-                    dividirParam(function);
-                    ans = predicados.start(8, p1, p2);
+                    ans = predicados.start(8, function.get(0), null);
                     System.out.println(ans);
                     break;
                 case 9: // List - crear listas
                     String list1 = predicados.listCreation(function.get(0));
                     System.out.println(list1);
                     break;
-                case 10: // Operaciones aritmeticas 
+                case 10: // Operaciones aritmeticas
                     for (String tokens : function) {
 
                         if (containsOnlyNumbers(tokens)) {
@@ -78,11 +77,11 @@ public class Interpreter<T> {
                         }
 
                     }
-                case 11: // defun 
+                case 11: // defun
                     dividirParam(function);
-                    def_funciones.used_SavedFunction("", p1, p2);
+                    def_funciones.use_SavedFunction(toUsefunction, p1, p2);
                     break;
-                case 0: // no pertenece a funciones 
+                case 0: // no pertenece a funciones
                     System.out.println("Existe un error en el código");
                     break;
 
@@ -159,10 +158,17 @@ public class Interpreter<T> {
      */
     public void dividirParam(ArrayList<String> exprAssignValue) {
         ArrayList<String> tokens = readFile.split(exprAssignValue, " ");
-        String newexprVar = tokens.get(2).replace("(", "").replace(")", "").trim();
+        toUsefunction = tokens.get(0).replaceAll("\\(", "");
+        if (tokens.size() > 2) {
+            String newexprVar = tokens.get(2).replace("(", "").replace(")", "").trim();
+            p1 = tokens.get(1);
+            p2 = newexprVar;
+        } else { // Función de solo un parámetro
+            String newexprVar = tokens.get(1).replace("(", "").replace(")", "").trim();
+            p1 = newexprVar;
+            p2 = null;
+        }
 
-        p1 = tokens.get(1);
-        p2 = newexprVar;
     }
 
 }

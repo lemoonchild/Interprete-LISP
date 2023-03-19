@@ -19,6 +19,7 @@ public class Predicados<T> {
      * @return
      */
     public boolean start(int action, String toDo, String ifTrue) {
+        toDo = toDo.replaceAll("\\(", "").replaceAll("\\)", "");
         elements = toDo.split(" ");
         Boolean ans = false;
 

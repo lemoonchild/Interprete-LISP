@@ -1,15 +1,37 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
- * Clase Functions 
- * Objetivo: 
+ * Clase Functions
+ * Objetivo:
  */
 
 public class Functions<T> {
     private String name;
     private ArrayList<ArrayList<String>> code;
-    private T par1;
-    private T par2;
+    private String par1 = "";
+    private String par2 = "";
+
+    public void setPar(String par1, String par2) {
+        this.par1 = par1;
+        this.par2 = par2;
+    }
+
+    public T getPar1() {
+        return (T) Interpreter.variables.getVariables().get(par1);
+    }
+
+    public void setVPar1(T value_par1) {
+        Interpreter.variables.getVariables().put(par1, value_par1);
+    }
+
+    public T getPar2() {
+        return (T) Interpreter.variables.getVariables().get(par2);
+    }
+
+    public void setVPar2(T value_par2) {
+        Interpreter.variables.getVariables().put(par2, value_par2);
+    }
 
     /**
      * @return
@@ -37,34 +59,6 @@ public class Functions<T> {
      */
     public void setCode(ArrayList<ArrayList<String>> code) {
         this.code = code;
-    }
-
-    /**
-     * @return
-     */
-    public T getPar1() {
-        return par1;
-    }
-
-    /**
-     * @param par1
-     */
-    public void setPar1(T par1) {
-        this.par1 = par1;
-    }
-
-    /**
-     * @return
-     */
-    public T getPar2() {
-        return par2;
-    }
-
-    /**
-     * @param par2
-     */
-    public void setPar2(T par2) {
-        this.par2 = par2;
     }
 
 }
