@@ -1,23 +1,8 @@
-(defun categorize-number (number)
-  (cond ((< number 0) "Negativo")
-        ((= number 0) "Cero")
-        ((< number 10) "Un dígito")
-        ((< number 100) "Dos dígitos")
-        ((< number 1000) "Tres dígitos")
-        (t "Más de tres dígitos")))
+(setq number 1200)
 
-(categorize-number (3))
-
-(setq a 10)
-
-(setq b 11)
-
-(setq operacion '+')
-
-( + a b )
-
-(cond ((equals operacion '+') ( + a b ))
-        ((equals operacion '-') ( - a b ))
-        ((equals operacion '*') ( * a b ))
-        ((equals operacion '/') ( / a b ))
-        (t "Operación inválida"))
+(cond ((< number 0) "Negativo")
+((= number 0) "Cero")
+((< number 10) "Un digito")
+((< number 100) "Dos digitos")
+((< number 1000) "Tres digitos")
+(t "Mas de tres digitos"))

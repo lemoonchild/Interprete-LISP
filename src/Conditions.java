@@ -44,6 +44,7 @@ public class Conditions {
         Boolean fin = false;
 
         for (List<String> list : ToDo) {
+
             for (int i = 0; i < list.size(); i++) {
                 if (list.get(i).isBlank()) {
                     list.remove(i);
@@ -51,7 +52,9 @@ public class Conditions {
             }
 
             for (int i = 0; i < list.size();) {
-                if (list.get(i).contains("cond")) {
+                if (list.get(i).isBlank()) {
+                    i++;
+                } else if (list.get(i).contains("cond")) {
                     i++;
                 } else if (list.get(i).contains("t")) {
                     String show = list.get(i).replaceAll("\\(t ", "").trim();
