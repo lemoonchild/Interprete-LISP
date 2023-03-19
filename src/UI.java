@@ -1,10 +1,12 @@
 
-import java.util.ArrayList;
+
 import java.util.Scanner;
 
 /**
- * UI
+ * Clase UI
+ * Objetivo: Main e interfaz de usuario 
  */
+
 public class UI {
 
     static Scanner sc = new Scanner(System.in);

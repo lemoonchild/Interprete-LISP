@@ -32,7 +32,7 @@ public class BooleanActions_test {
 
     @Test
     public void Atom_test() {
-        assertTrue(pred.Atom("6"));
-        assertFalse(pred.Atom("(2, 3, 5)"));
+        assertFalse(pred.Atom("(atom (2 4 5))"));
+        assertTrue(pred.Atom("(atom 6)"));
     }
 }

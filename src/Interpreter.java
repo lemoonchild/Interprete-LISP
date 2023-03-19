@@ -4,10 +4,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Interpreter
- * 
- * @param <T>
+ * Clase Interpreter 
+ * Objetivo: 
  */
+
 public class Interpreter<T> {
     Conditions condition = new Conditions();
     Operations operations = new Operations<>();
@@ -92,34 +92,60 @@ public class Interpreter<T> {
         }
     }
 
+    /**
+     * @param aa
+     */
     public void Read_COND(ArrayList<String> aa) {
         condition.Read_COND(aa);
     }
 
+    /**
+     * @param ab
+     */
     public void COND(ArrayList<String> ab) {
         condition.COND(ab);
     }
 
+    /**
+     * @param bb
+     */
     public void getExpressions(String bb) {
         condition.getExpressions(bb);
     }
 
+    /**
+     * @param c
+     */
     public void evaluateOnlyNumbers(String c) {
         operations.evaluateOnlyNumbers(c);
     }
 
+    /**
+     * @param aa
+     * @param variables
+     */
     public void evaluateWithVar(String aa, HashMap<String, Double> variables) {
         operations.evaluateWithVar(aa, variables);
     }
 
+    /**
+     * @param c
+     */
     public void SetQ(ArrayList<String> c) {
         variables.SetQ(c, " ", variables.getVariables());
         System.out.println(variables.getVariables());
     }
 
+    /**
+     * @param a
+     */
     public void QUOTE(String a) {
     }
 
+    /**
+     * @param expressions
+     * @return
+     */
     public boolean containsOnlyNumbers(String expressions) {
 
         Pattern pattern = Pattern.compile("-?\\d+(\\.\\d+)?");
@@ -128,6 +154,9 @@ public class Interpreter<T> {
         return matcher.find();
     }
 
+    /**
+     * @param exprAssignValue
+     */
     public void dividirParam(ArrayList<String> exprAssignValue) {
         ArrayList<String> tokens = readFile.split(exprAssignValue, " ");
         String newexprVar = tokens.get(2).replace("(", "").replace(")", "").trim();

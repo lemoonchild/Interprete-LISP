@@ -1,14 +1,21 @@
-import java.util.ArrayList;
-import java.util.Arrays;
+
 import java.util.HashMap;
-import java.util.LinkedList;
 
 /**
- * Predicados
+ * Clase Predicados 
+ * Objetivo: 
  */
+
 public class Predicados<T> {
     String[] elements;
 
+    /**
+     * Metodo que define las acciones que realizara predicados 
+     * @param action 
+     * @param toDo 
+     * @param ifTrue 
+     * @return
+     */
     public boolean start(int action, String toDo, String ifTrue) {
         elements = toDo.split(" ");
         Boolean ans = false;
@@ -38,7 +45,7 @@ public class Predicados<T> {
                 }
                 break;
             default:
-                System.out.println("Condición inválida, revisa tu código");
+                System.out.println("Condición inválida, por favor revisa el código");
                 break;
         }
 
@@ -50,6 +57,10 @@ public class Predicados<T> {
         return ans;
     }
 
+    /**
+     * @param elemento
+     * @return
+     */
     public boolean Atom(String elemento) {
         elemento = elemento.replace("\\(atom", "");
         if (elemento.contains("(") & elemento.contains("))")) {
@@ -59,6 +70,11 @@ public class Predicados<T> {
         }
     }
 
+    /**
+     * @param e1
+     * @param e2
+     * @return
+     */
     public boolean Equal(String e1, String e2) {
         if (e1.equalsIgnoreCase(e2)) {
             return true;
@@ -67,6 +83,11 @@ public class Predicados<T> {
         }
     }
 
+    /**
+     * @param e1
+     * @param e2
+     * @return
+     */
     public boolean LessThan(Double e1, Double e2) {
         if (e1 < e2) {
             return true;
@@ -75,6 +96,11 @@ public class Predicados<T> {
         }
     }
 
+    /**
+     * @param e1
+     * @param e2
+     * @return
+     */
     public boolean MoreThan(Double e1, Double e2) {
         if (e1 > e2) {
             return true;
@@ -83,6 +109,10 @@ public class Predicados<T> {
         }
     }
 
+    /**
+     * @param Elements
+     * @return
+     */
     public String listCreation(String Elements) {
         String Createdlist = "(";
         String[] temp = Elements.split(" ");
@@ -97,6 +127,10 @@ public class Predicados<T> {
         return Createdlist.trim();
     }
 
+    /**
+     * @param i
+     * @param j
+     */
     public void isVariable(int i, int j) {
         HashMap<String, T> temp = Interpreter.variables.getVariables();
 

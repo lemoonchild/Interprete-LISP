@@ -1,12 +1,20 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * Clase DEFUN
+ * Objetivo: 
+ */
+
 public class DEFUN {
 
     HashMap<String, Functions> savedFunctions = new HashMap<>();
     ArrayList<ArrayList<String>> acciones = new ArrayList<>();
     Interpreter evaluate = new Interpreter<>();
 
+    /**
+     * @param code
+     */
     public void create(ArrayList<String> code) {
         Functions tempF = new Functions<>();
         String[] a = code.get(0).split(" ");
@@ -17,6 +25,9 @@ public class DEFUN {
 
     }
 
+    /**
+     * @param code
+     */
     public void partial_function(ArrayList<String> code) {
         int abre_parentesis = 0;
         int cierra_parentesis = 0;
@@ -42,6 +53,12 @@ public class DEFUN {
 
     }
 
+    /**
+     * @param <T>
+     * @param toUse
+     * @param par1
+     * @param par2
+     */
     public <T> void used_SavedFunction(String toUse, T par1, T par2) {
 
         if (savedFunctions.containsKey(toUse)) {

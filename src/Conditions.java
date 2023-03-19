@@ -4,13 +4,16 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * Conditions
- * Permite al usuario/programador escribir una condición y guardarla utilizando
- * COND
+ * Clase Conditions
+ * Objetivo: Permite al usuario/programador escribir una condición y guardarla utilizando COND
  */
 
 public class Conditions {
 
+    /**
+     * @param part
+     * @return
+     */
     public ArrayList<List<String>> Read_COND(ArrayList<String> part) {
         ArrayList<List<String>> Conditions = new ArrayList<List<String>>();
         for (String p : part) {
@@ -30,6 +33,10 @@ public class Conditions {
         return Conditions;
     }
 
+    /**
+     * @param <T>
+     * @param Condition
+     */
     public <T> void COND(ArrayList<String> Condition) {
         ArrayList<List<String>> ToDo = Read_COND(Condition);
         Predicados<T> true_false = new Predicados<>();
@@ -62,6 +69,10 @@ public class Conditions {
 
     }
 
+    /**
+     * @param lispCode
+     * @return
+     */
     public static List<String> getExpressions(String lispCode) {
         List<String> expressions = Arrays.asList(lispCode.split("[()]"));
         expressions = expressions.stream().collect(Collectors.toList());

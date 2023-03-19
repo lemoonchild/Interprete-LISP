@@ -77,6 +77,11 @@ public class readFile {
 
   }
 
+  /**
+   * @param lista
+   * @param delimitador
+   * @return
+   */
   public static ArrayList<String> split(ArrayList<String> lista, String delimitador) {
     ArrayList<String> subcadenas = new ArrayList<>();
     for (String cadena : lista) {

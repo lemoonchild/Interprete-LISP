@@ -3,6 +3,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Stack;
 
+/**
+ * Clase Operations 
+ * Objetivo: Realizacion de operaciones aritmeticas con numeros o numeros y varaibles 
+ */
+
 public class Operations<T extends Number> {
 
     private Stack<Object> stack;
