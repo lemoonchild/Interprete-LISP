@@ -5,7 +5,8 @@ import java.util.stream.Collectors;
 
 /**
  * Clase Conditions
- * Objetivo: Permite al usuario/programador escribir una condición y guardarla utilizando COND
+ * Objetivo: Permite al usuario/programador escribir una condición y guardarla
+ * utilizando COND
  */
 
 public class Conditions {
@@ -43,10 +44,15 @@ public class Conditions {
         Boolean fin = false;
 
         for (List<String> list : ToDo) {
-            for (int i = 0; i < list.size();) {
+            for (int i = 0; i < list.size(); i++) {
                 if (list.get(i).isBlank()) {
+                    list.remove(i);
+                }
+            }
+
+            for (int i = 0; i < list.size();) {
+                if (list.get(i).contains("cond")) {
                     i++;
-                    continue;
                 } else if (list.get(i).contains("t")) {
                     String show = list.get(i).replaceAll("\\(t ", "").trim();
                     show = show.replaceAll("\\)", "");
@@ -54,19 +60,15 @@ public class Conditions {
                     i++;
                 } else {
                     int predicado = new SintaxScann().Decide_action(list.get(i));
-                    fin = true_false.start(predicado, list.get(i), list.get(i + 1).trim());
+                    fin = true_false.start(predicado, list.get(i), list.get(i + 1));
                     i += 2;
-                }
-
-                if (fin) {
-                    break;
                 }
             }
             if (fin) {
                 break;
             }
-        }
 
+        }
     }
 
     /**

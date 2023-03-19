@@ -1,19 +1,21 @@
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
- * Clase Predicados 
- * Objetivo: 
+ * Clase Predicados
+ * Objetivo:
  */
 
 public class Predicados<T> {
     String[] elements;
 
     /**
-     * Metodo que define las acciones que realizara predicados 
-     * @param action 
-     * @param toDo 
-     * @param ifTrue 
+     * Metodo que define las acciones que realizara predicados
+     * 
+     * @param action
+     * @param toDo
+     * @param ifTrue
      * @return
      */
     public boolean start(int action, String toDo, String ifTrue) {
@@ -49,11 +51,7 @@ public class Predicados<T> {
                 break;
         }
 
-        if (ifTrue != null) {
-            if (ans) {
-                System.out.println(ifTrue);
-            }
-        }
+        True(ifTrue, ans);
         return ans;
     }
 
@@ -141,5 +139,28 @@ public class Predicados<T> {
             elements[j] = temp.get(elements[j]).toString();
         }
 
+    }
+
+    public void True(String ifTrue, Boolean ans) {
+        HashMap<String, T> temp = Interpreter.variables.getVariables();
+        ArrayList<ArrayList<String>> foo = new ArrayList<ArrayList<String>>();
+
+        if (ifTrue != null) {
+            if (ans) {
+                if (ifTrue.contains("\"")) {
+                    ifTrue = ifTrue.replaceAll("\"", "");
+                    System.out.println(ifTrue);
+                } else {
+                    if (temp.containsKey(ifTrue)) {
+                        System.out.println(temp.get(ifTrue));
+                    } else {
+                        ArrayList<String> trueCode = new ArrayList<String>();
+                        trueCode.add("(" + ifTrue + ")");
+                        foo.add(trueCode);
+                        new Interpreter<>().Interp(foo);
+                    }
+                }
+            }
+        }
     }
 }

@@ -1,19 +1,13 @@
-(setq x 10)
+(setq a 10)
 
-(cond
-  ((> x 10) "x es mayor que 10")
-  ((= x 5) "x es igual a 5")
-  ((< x 0) "x es menor que 0")
-  (t "x es mayor o igual a 0, pero menor o igual que 10"))
+(setq b 11)
 
-(atom 4)
+(setq operacion '+')
 
-(atom (10 6 7))
+( + a b )
 
-(list 3 5 6)
-
-(cond
-  ((> 7 10) "x es mayor que 10")
-  ((= 8 5) "x es igual a 5")
-  ((< -1 0) "x es menor que 0")
-  (t "x es mayor o igual a 0, pero menor o igual que 10"))
+(cond ((equals operacion '+') ( + a b ))
+        ((equals operacion '-') ( - a b ))
+        ((equals operacion '*') ( * a b ))
+        ((equals operacion '/') ( / a b ))
+        (t "Operación inválida"))
