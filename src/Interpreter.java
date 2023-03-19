@@ -92,24 +92,10 @@ public class Interpreter<T> {
     }
 
     /**
-     * @param aa
-     */
-    public void Read_COND(ArrayList<String> aa) {
-        condition.Read_COND(aa);
-    }
-
-    /**
      * @param ab
      */
     public void COND(ArrayList<String> ab) {
         condition.COND(ab);
-    }
-
-    /**
-     * @param bb
-     */
-    public void getExpressions(String bb) {
-        condition.getExpressions(bb);
     }
 
     /**
@@ -139,6 +125,7 @@ public class Interpreter<T> {
      * @param a
      */
     public void QUOTE(String a) {
+        variables.Quote(a);
     }
 
     /**
@@ -154,7 +141,10 @@ public class Interpreter<T> {
     }
 
     /**
-     * @param exprAssignValue
+     * según la expresion dada asigna valores a los datos por pasar a los distintos
+     * métodos, según sea necesario
+     * 
+     * @param exprAssignValue - código de funcion a realizar
      */
     public void dividirParam(ArrayList<String> exprAssignValue) {
         ArrayList<String> tokens = readFile.split(exprAssignValue, " ");

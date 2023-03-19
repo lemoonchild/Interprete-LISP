@@ -1,7 +1,9 @@
-(setq number 1200)
+(setq number 0)
+
+(atom number)
 
 (cond ((< number 0) "Negativo")
-((= number 0) "Cero")
+((= number 0) (setq a 0))
 ((< number 10) "Un digito")
 ((< number 100) "Dos digitos")
 ((< number 1000) "Tres digitos")

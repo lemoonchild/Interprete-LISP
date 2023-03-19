@@ -48,7 +48,7 @@ public class readFile {
 
   /*
    * Permite reconocer cuando empieza y termina el uso de una función especial,
-   * reconociendo sus paréntesis.
+   * de acuerdo al sintax de un espacio entre cada funcion
    * 
    * Además retorna el código de esa función a través de un arraylist, que luego
    * será interpretado.
@@ -78,6 +78,8 @@ public class readFile {
   }
 
   /**
+   * Divide los datos en un arraylist de acuerdo al delimitador dado
+   * 
    * @param lista
    * @param delimitador
    * @return
