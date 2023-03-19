@@ -4,8 +4,10 @@ import java.util.regex.Pattern;
 import java.util.ArrayList;
 
 /**
- * Variables
+ * Clase Variables 
+ * Objetivo: Realiza variables como SetQ y Quote 
  */
+
 public class Variables<T> {
     static readFile read = new readFile();
      ArrayList<String> araaaa = new ArrayList<String>();
