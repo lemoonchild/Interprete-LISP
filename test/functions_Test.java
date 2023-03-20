@@ -50,8 +50,9 @@ public class functions_Test {
     public void evaluate_Function() {
         stablish();
         ArrayList<String> a = new ArrayList<>();
-        a.add("(categorize-number (3))");
+        a.add("(categorize-number 3)");
         dividirParam(a);
+
         def_fun.use_SavedFunction("categorize-number", p1, p2);
     }
 }

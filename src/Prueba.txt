@@ -5,4 +5,5 @@
         ((< number 100) "Dos dígitos")
         ((< number 1000) "Tres dígitos")
         (t "Más de tres dígitos")))
+
 (categorize-number 42)

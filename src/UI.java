@@ -1,10 +1,8 @@
-
-
 import java.util.Scanner;
 
 /**
  * Clase UI
- * Objetivo: Main e interfaz de usuario 
+ * Objetivo: Main e interfaz de usuario
  */
 
 public class UI {
@@ -19,6 +17,5 @@ public class UI {
         System.out.println("En este momento se leera el archivo de código");
         interpreter.Interp(read._readfile("src\\Prueba.txt"));
     }
-
 
 }
