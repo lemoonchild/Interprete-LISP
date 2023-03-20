@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class Variables<T> {
     static readFile read = new readFile();
-     ArrayList<String> araaaa = new ArrayList<String>();
+    ArrayList<String> araaaa = new ArrayList<String>();
 
     private HashMap<String, T> variables = new HashMap<>();
 

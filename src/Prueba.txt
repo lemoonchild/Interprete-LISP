@@ -1,3 +1,7 @@
+(setq x 5)
+
+( + x 7 )
+
 (defun categorize-number (number)
   (cond ((< number 0) "Negativo")
         ((= number 0) "Cero")

@@ -140,11 +140,12 @@ public class Interpreter<T> {
      * @return
      */
     public boolean containsOnlyNumbers(String expressions) {
+        if(expressions.contains("-?\\d+(\\.\\d+)?")){
+            return true;
+        }else{
+            return false; 
+        }
 
-        Pattern pattern = Pattern.compile("\\s+|(?=\\()|(?<=\\))");
-        Matcher matcher = pattern.matcher(expressions);
-
-        return matcher.find();
     }
 
     /**

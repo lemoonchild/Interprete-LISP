@@ -61,6 +61,7 @@ public class SintaxScann {
         Matcher matcher = pattern.matcher(expressions);
 
         return matcher.find();
+
     }
 
     /**
