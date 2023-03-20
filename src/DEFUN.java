@@ -3,7 +3,8 @@ import java.util.HashMap;
 
 /**
  * Clase DEFUN
- * Objetivo:
+ * Objetivo: crear una función en base a los deseos del usuario, hacuendo uso de
+ * otras funciones especiales, ya establecidas
  */
 
 public class DEFUN {
@@ -14,7 +15,11 @@ public class DEFUN {
     Functions tempF = new Functions<>();
 
     /**
-     * @param code
+     * Permite el registro de una funcion a través de la clase "Function"
+     * registra el nombre que se le da y guarda los parametros y codigo que se deben
+     * utilizar al llamarla
+     * 
+     * @param code - todo el contenido que debe ingresarse a la funcion
      */
     public void create(ArrayList<String> code) {
         String[] a = code.get(0).split(" ");
@@ -29,7 +34,10 @@ public class DEFUN {
     }
 
     /**
-     * @param code
+     * Guarda el código deseado para la funcion creada en el formato adecuado para
+     * ser leído
+     * 
+     * @param code - simplemente el codigo que se evalúa en la función
      */
     public void partial_function(ArrayList<String> code) {
         ArrayList<String> sf = new ArrayList<String>();
@@ -45,10 +53,12 @@ public class DEFUN {
     }
 
     /**
-     * @param <T>
-     * @param toUse
-     * @param par1
-     * @param par2
+     * Permite el uso de una función crada anteriormente
+     * 
+     * @param <T>   uso de genericos para un funcionamiento adecuado
+     * @param toUse nombre de la función a usar
+     * @param par1  valor dado al parametro 1 de la funcion
+     * @param par2  valor dado al parametro 2 de la funcion
      */
     public <T> void use_SavedFunction(String toUse, T par1, T par2) {
 
@@ -65,6 +75,12 @@ public class DEFUN {
         }
     }
 
+    /**
+     * asigna el valor especifico a los parametros de una funcion, dependiendo si
+     * cuenta con 1 o 2
+     * 
+     * @param values listado de parametros dados por el usuario
+     */
     public void assignParameters(String[] values) {
         if (values.length > 3) {
             String p1 = values[2].replaceAll("\\(", "").replaceAll("\\)", "");
