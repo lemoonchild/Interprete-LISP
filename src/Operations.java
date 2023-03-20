@@ -182,33 +182,6 @@ public class Operations<T extends Number> {
     }
 
     /**
-     * Operacion "SETQ" que asigna un valor dentro una variable con la utilizacion
-     * de HashMap
-     * 
-     * @param exprAssignValue Expresion con foramto ( variable valor )
-     * @return Hashmap de tipo String, Double con variable asignada
-     */
-    public HashMap<String, Double> setq(String exprAssignValue) {
-
-        if (!exprAssignValue.contains("( setq ( ")) {
-            throw new IllegalArgumentException(
-                    "¡No se ha utilizado la opcion ( setq(var value)) para asignar la variable!");
-        }
-
-        String newexprVar = exprAssignValue.replace("( setq (", " ").replace("))", " ").trim();
-        HashMap<String, Double> variables = new HashMap<>();
-
-        String[] tokens = newexprVar.split(" ");
-
-        String variableName = tokens[0];
-        Double varValue = Double.parseDouble(tokens[1]);
-
-        variables.put(variableName, varValue);
-
-        return variables;
-    }
-
-    /**
      * Evalua el operador
      * 
      * @param a        token Double de lista de tokens pendientes
