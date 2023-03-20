@@ -22,7 +22,7 @@ public class Interpreter<T> {
     String toUsefunction = "";
     String quote;
     Number withVar;
-    Number onlyNumber; 
+    Number onlyNumber;
     Boolean ans = false;
 
     /**
@@ -44,8 +44,8 @@ public class Interpreter<T> {
                 case 3: // SetQ
                     SetQ(function);
                     break;
-                case 4: //Quote
-                    quote = QUOTE(function.get(0)); 
+                case 4: // Quote
+                    quote = QUOTE(function.get(0));
                     System.out.println(quote);
                     break;
                 case 5: // ATOM ¿Es una lista?
@@ -75,12 +75,12 @@ public class Interpreter<T> {
                             onlyNumber = evaluateOnlyNumbers(function.get(0));
                             System.out.println(onlyNumber);
                         } else {
-                            withVar = evaluateWithVar(function.get(0), variables.getVariables()); 
+                            withVar = evaluateWithVar(function.get(0), variables.getVariables());
                             System.out.println(withVar);
                         }
 
                     }
-                    break; 
+                    break;
                 case 11: // defun
                     dividirParam(function);
                     def_funciones.use_SavedFunction(toUsefunction, p1, p2);
@@ -104,7 +104,7 @@ public class Interpreter<T> {
 
     /**
      * @param c
-     * @return 
+     * @return
      */
     public Number evaluateOnlyNumbers(String c) {
         return operations.evaluateOnlyNumbers(c);
@@ -113,7 +113,7 @@ public class Interpreter<T> {
     /**
      * @param aa
      * @param variables
-     * @return 
+     * @return
      */
     public Number evaluateWithVar(String aa, HashMap<String, Double> variables) {
         return operations.evaluateWithVar(aa, variables);
@@ -129,7 +129,7 @@ public class Interpreter<T> {
 
     /**
      * @param a
-     * @return 
+     * @return
      */
     public String QUOTE(String a) {
         return variables.Quote(a);
@@ -141,7 +141,7 @@ public class Interpreter<T> {
      */
     public boolean containsOnlyNumbers(String expressions) {
         if(expressions.contains("-?\\d+(\\.\\d+)?")){
-            return true; 
+            return true;
         }else{
             return false; 
         }

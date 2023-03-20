@@ -36,25 +36,28 @@ public class SintaxScann {
         } else if (Parts[0].contains(">")) {
             return 8; // Mayor que - PREDICADO
         } else if (Parts[0].contains("list")) {
-            return 9; // Crear una list
-        } else if (matchArithmeticOp(action)) {
-            return 10; // Operaciones aritmeticas 
-        } else if (createdFunction(Parts[0])) {
-            return 11; // defun 
+            return 9;
+        } // Crear una list
+          // } else if (matchArithmeticOp(action)) {
+          // return 10; // Operaciones aritmeticas
+          // }
+        else if (createdFunction(Parts[0])) {
+            return 11; // defun
         } else {
-            return 0; // no pertentece 
+            return 0; // no pertentece
         }
 
     }
 
     /**
-     * Metodo que realiza un regex para identificar operaciones aritmeticas 
-     * @param expressions Expresion a evaluar 
-     * @return Verdadero si matchea con regex, falso si no 
+     * Metodo que realiza un regex para identificar operaciones aritmeticas
+     * 
+     * @param expressions Expresion a evaluar
+     * @return Verdadero si matchea con regex, falso si no
      */
     public boolean matchArithmeticOp(String expressions) {
 
-        Pattern pattern = Pattern.compile("\\s+|(?=\\()|(?<=\\))"); //revisar 
+        Pattern pattern = Pattern.compile("\\s+|(?=\\()|(?<=\\))"); // revisar
         Matcher matcher = pattern.matcher(expressions);
 
         return matcher.find();
@@ -62,11 +65,13 @@ public class SintaxScann {
     }
 
     /**
-     * Metodo que identifica el defun 
-     * @param key palabra clave a identificar 
-     * @return verdadero si esta contiene la palabra, falso si no 
+     * Metodo que identifica el defun
+     * 
+     * @param key palabra clave a identificar
+     * @return verdadero si esta contiene la palabra, falso si no
      */
     public boolean createdFunction(String key) {
+        key = key.replaceAll("\\(", "");
         if (Interpreter.def_funciones.savedFunctions.containsKey(key)) {
             return true;
         } else {

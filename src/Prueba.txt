@@ -1,3 +1,13 @@
 (setq x 5)
 
 ( + x 7 )
+
+(defun categorize-number (number)
+  (cond ((< number 0) "Negativo")
+        ((= number 0) "Cero")
+        ((< number 10) "Un dígito")
+        ((< number 100) "Dos dígitos")
+        ((< number 1000) "Tres dígitos")
+        (t "Más de tres dígitos")))
+
+(categorize-number 42)
