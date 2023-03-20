@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 /**
  * Clase Functions
- * Objetivo:
+ * Objetivo: Clase para guardar el codigo de DEFUN
  */
 
 public class Functions<T> {

@@ -4,6 +4,7 @@ import java.util.regex.Pattern;
 
 /**
  * SintaxScann
+ * Proposito: Identificar por medio de cases que tipo de accion se va a realizar
  */
 public class SintaxScann {
     Scanner sc = new Scanner(System.in);

@@ -1,0 +1,10 @@
+(defun op (x)
+    ( + x 6 ))
+
+(op 2)
+
+( + 7 6 )
+
+(quote(prueba quote para LISP))
+
+

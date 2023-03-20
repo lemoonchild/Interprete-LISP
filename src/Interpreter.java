@@ -1,11 +1,9 @@
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * Clase Interpreter
- * Objetivo:
+ * Objetivo: Realizar interpretacion de las funciones leidas del txt
  */
 
 public class Interpreter<T> {

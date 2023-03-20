@@ -168,10 +168,7 @@ public class Operations<T extends Number> {
      * @return Resultado que forma los tokens dentro de la lista
      */
     private void evaluatePendingTokens(List<Object> tokens) {
-     // verifica si el valor de la
-                                                                                       // lista es mayor a 1 y que el
-                                                                                       // penultimo valor de la lista es
-                                                                                       // de tipo double
+ 
             double b = (double) tokens.remove(tokens.size() - 1);
             Object cc = (Object) tokens.remove(tokens.size() - 1);
             double a = Double.valueOf(cc.toString());

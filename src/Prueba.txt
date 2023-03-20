@@ -3,4 +3,26 @@
 
 (op 2)
 
-( + 6 7 )
+( + 7 6 )
+
+( * 3( + 5 7 ))
+
+(quote(prueba quote para LISP))
+
+(setq x 6)
+
+( + x 4 )
+
+(atom 5)
+
+(list 1 2 3 4)
+
+(defun categorize-number (number)
+  (cond ((< number 0) "Negativo")
+        ((= number 0) "Cero")
+        ((< number 10) "Un dígito")
+        ((< number 100) "Dos dígitos")
+        ((< number 1000) "Tres dígitos")
+        (t "Más de tres dígitos")))
+        
+(categorize-number 42)
