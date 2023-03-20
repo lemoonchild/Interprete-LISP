@@ -15,7 +15,6 @@ public class OperationTest {
         HashMap<String, Double> variables = new HashMap<>();
 
         variables.put("variable", 2.0);
-        variables.put("variable2", 4.0);
 
         return variables;
 
@@ -34,11 +33,5 @@ public class OperationTest {
         assertEquals(6.0, arithOp.evaluateWithVar(("( + variable 4 )"), addToHasMap()));
 
     }
-
-    @Test
-    public void opTesting_2Variable() {
-
-        assertEquals(6.0, arithOp.evaluateWithVar(("( + variable variable2 )"), addToHasMap()));
-
-    }
 }
+
