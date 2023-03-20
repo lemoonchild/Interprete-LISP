@@ -70,7 +70,7 @@ public class Operations<T extends Number> {
      */
     public T evaluateWithVar(String expression, HashMap<String, Double> variables) throws IllegalArgumentException {
 
-        String[] tokens = expression.split("\\s+|(?=\\()|(?<=\\))"); // La expresión regular utiliza tres patrones para
+        String[] tokens = expression.trim().split("\\s+|(?=\\()|(?<=\\))"); // La expresión regular utiliza tres patrones para
                                                                      // dividir la cadena de entrada en tokens separados
                                                                      // por uno o más espacios en blanco, paréntesis
                                                                      // izquierdos o paréntesis derechos
