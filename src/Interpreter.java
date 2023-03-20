@@ -20,7 +20,9 @@ public class Interpreter<T> {
     String p1 = "";
     String p2 = "";
     String toUsefunction = "";
-
+    String quote;
+    Number withVar;
+    Number onlyNumber; 
     Boolean ans = false;
 
     /**
@@ -42,8 +44,9 @@ public class Interpreter<T> {
                 case 3: // SetQ
                     SetQ(function);
                     break;
-                case 4: // Quote
-                    QUOTE(function.get(0));
+                case 4: //Quote
+                    quote = QUOTE(function.get(0)); 
+                    System.out.println(quote);
                     break;
                 case 5: // ATOM ¿Es una lista?
                     ans = predicados.start(5, function.get(0), null);
@@ -69,14 +72,15 @@ public class Interpreter<T> {
                     for (String tokens : function) {
 
                         if (containsOnlyNumbers(tokens)) {
-                            evaluateOnlyNumbers(function.get(0));
-
+                            onlyNumber = evaluateOnlyNumbers(function.get(0));
+                            System.out.println(onlyNumber);
                         } else {
-                            evaluateWithVar(function.get(0), variables.getVariables());
-
+                            withVar = evaluateWithVar(function.get(0), variables.getVariables()); 
+                            System.out.println(withVar);
                         }
 
                     }
+                    break; 
                 case 11: // defun
                     dividirParam(function);
                     def_funciones.use_SavedFunction(toUsefunction, p1, p2);
@@ -100,17 +104,19 @@ public class Interpreter<T> {
 
     /**
      * @param c
+     * @return 
      */
-    public void evaluateOnlyNumbers(String c) {
-        operations.evaluateOnlyNumbers(c);
+    public Number evaluateOnlyNumbers(String c) {
+        return operations.evaluateOnlyNumbers(c);
     }
 
     /**
      * @param aa
      * @param variables
+     * @return 
      */
-    public void evaluateWithVar(String aa, HashMap<String, Double> variables) {
-        operations.evaluateWithVar(aa, variables);
+    public Number evaluateWithVar(String aa, HashMap<String, Double> variables) {
+        return operations.evaluateWithVar(aa, variables);
     }
 
     /**
@@ -123,9 +129,10 @@ public class Interpreter<T> {
 
     /**
      * @param a
+     * @return 
      */
-    public void QUOTE(String a) {
-        variables.Quote(a);
+    public String QUOTE(String a) {
+        return variables.Quote(a);
     }
 
     /**
@@ -134,7 +141,7 @@ public class Interpreter<T> {
      */
     public boolean containsOnlyNumbers(String expressions) {
 
-        Pattern pattern = Pattern.compile("-?\\d+(\\.\\d+)?");
+        Pattern pattern = Pattern.compile("\\s+|(?=\\()|(?<=\\))"); 
         Matcher matcher = pattern.matcher(expressions);
 
         return matcher.find();
