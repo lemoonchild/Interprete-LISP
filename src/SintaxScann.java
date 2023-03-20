@@ -17,7 +17,7 @@ public class SintaxScann {
      */
     public int Decide_action(String action) {
 
-        String[] Parts = action.split(" ");
+        String[] Parts = action.trim().split(" ");
 
         if (Parts[0].contains("defun")) {
             return 1; // Definir función
