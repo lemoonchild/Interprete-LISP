@@ -30,7 +30,7 @@ public class Interpreter<T> {
      */
     public void Interp(ArrayList<ArrayList<String>> lisp_code) {
         for (ArrayList<String> function : lisp_code) {
-
+            System.out.println("");
             int a = ss.Decide_action(function.get(0));
             switch (a) {
                 case 1: // Defun
@@ -138,10 +138,10 @@ public class Interpreter<T> {
      * @return
      */
     public boolean containsOnlyNumbers(String expressions) {
-        if(expressions.contains("-?\\d+(\\.\\d+)?")){
+        if (expressions.contains("-?\\d+(\\.\\d+)?")) {
             return true;
-        }else{
-            return false; 
+        } else {
+            return false;
         }
 
     }

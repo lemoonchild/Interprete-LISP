@@ -1,28 +1,42 @@
+( * 3( + 5 7 ))
+
 (defun op (x)
     ( + x 6 ))
 
 (op 2)
 
-( + 7 6 )
-
-( * 3( + 5 7 ))
-
-(quote(prueba quote para LISP))
-
 (setq x 6)
 
 ( + x 4 )
 
+(quote(prueba quote para LISP))
+
 (atom 5)
 
+(atom (2 4 5))
+
 (list 1 2 3 4)
+
+(equal abc abc)
+
+(< 10 20)
+
+(> 10 20)
+
+(setq edad 65)
+
+(cond ((<= edad 0) "Edad inválida")
+      ((<= edad 12) "Niño")
+      ((<= edad 19) "Adolescente")
+      ((<= edad 64) "Adulto")
+      (t "Adulto mayor"))
 
 (defun categorize-number (number)
   (cond ((< number 0) "Negativo")
         ((= number 0) "Cero")
-        ((< number 10) "Un dígito")
-        ((< number 100) "Dos dígitos")
-        ((< number 1000) "Tres dígitos")
-        (t "Más de tres dígitos")))
+        ((< number 10) "Un digito")
+        ((< number 100) "Dos digitos")
+        ((< number 1000) "Tres digitos")
+        (t "Mas de tres digitos")))
         
 (categorize-number 42)
